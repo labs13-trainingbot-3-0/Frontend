@@ -4,8 +4,8 @@
   command = "yarn build"
 
 [template.environment]
-  REACT_APP_PROD = "trainingbot3.auth0.com"
-  REACT_APP_API = "https://www.trainingbot3.netlify.com/"
+  REACT_APP_PROD = "https://trainingbot-3.herokuapp.com"
+  REACT_APP_API = "https://trainingbot3.netlify.com/callback"
   NODE_PATH = "src/"
 
 # Redirect all requests to our domain to our client-side router

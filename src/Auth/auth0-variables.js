@@ -1,6 +1,6 @@
 export const AUTH_CONFIG = {
-  domain: "nickcannariato.auth0.com",
-  clientId: "tBTudXB9QQ9EfcHHlxBoQCa9OJ5uObC7",
+  domain: "trainingbot3.auth0.com",
+  clientId: "12vzftOjSRzNvFKe8Whh2aOeCuKlrrz4",
   callbackUrl: process.env.REACT_APP_LOCAL || process.env.REACT_APP_PROD
   //=callbackUrl: "http://localhost:3000/callback"
 };

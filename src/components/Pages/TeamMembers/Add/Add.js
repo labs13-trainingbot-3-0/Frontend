@@ -25,7 +25,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
-import Snackbar from '@material-ui/core/Snackbar'
+import Snackbar from 'components/UI/Snackbar/Snackbar'
 import { styles, MainContainer, MemberInfoContainer } from './styles.js'
 
 function Add(props) {
@@ -45,10 +45,7 @@ function Add(props) {
   } = props
 
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [isSnackbarOpen, setIsSnackbarOpen] = useState(false)
-  // state = {
-  //   isSnackbarOpen: false
-  // }
+  const [displaySnackbar, setDisplaySnackbar] = useState(false)
 
   useEffect(() => {
     // CDM
@@ -118,9 +115,9 @@ function Add(props) {
       member => member.email === teamMember.email
     )
     if (isEmailUnique.length) {
-      setIsSnackbarOpen(true)
+      setDisplaySnackbar(true)
     } else {
-      addTeamMember(state.teamMember);
+      addTeamMember(state.teamMember)
       dispatch({ type: 'TOGGLE_ROUTING' })
       dispatch({ type: 'DISPLAY_SNACKBAR', payload: true })
       history.push('/home')
@@ -148,11 +145,12 @@ function Add(props) {
           </p>
         }
       />
-      <Snackbar
-        open={isSnackbarOpen}
-        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-        message="A team member with this e-mail address already exists."
-      />
+      {displaySnackbar && (
+        <Snackbar
+          message="A team member with this e-mail address already exists."
+          type="delete"
+        />
+      )}
       <form
         className={classes.form}
         onSubmit={e =>

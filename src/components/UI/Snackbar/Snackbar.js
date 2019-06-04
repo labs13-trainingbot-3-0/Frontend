@@ -114,7 +114,7 @@ class CustomizedSnackbars extends React.Component {
           <MySnackbarContentWrapper
             onClose={this.handleClose}
             variant="error"
-            message="An error has occurred"
+            message={this.props.message}
           />
         );
       default:
@@ -137,7 +137,6 @@ class CustomizedSnackbars extends React.Component {
             horizontal: "left"
           }}
           open={this.state.open}
-          autoHideDuration={2000}
           onClose={this.handleClose}
         >
           {this.renderSnackBar()}

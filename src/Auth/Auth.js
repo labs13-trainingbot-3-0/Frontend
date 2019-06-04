@@ -17,6 +17,7 @@ const auth = new auth0.WebAuth({
   domain: AUTH_CONFIG.domain
 });
 
+
 //Logs user in
 export const login = () => {
   auth.authorize({

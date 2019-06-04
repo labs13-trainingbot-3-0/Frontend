@@ -18,4 +18,6 @@ import "./index.css";
 import dotenv from "dotenv";
 dotenv.config();
 
+console.log(require('dotenv').config())
+
 ReactDOM.render(<Routes />, document.getElementById("root"));

@@ -11,7 +11,7 @@
     "auth0-js": "^9.10.2",
     "auth0-lock": "^11.16.2",
     "axios": "^0.18.0",
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.0.0",
     "jwt-decode": "^2.2.0",
     "material-ui-flat-pagination": "^3.2.0",
     "moment": "^2.24.0",

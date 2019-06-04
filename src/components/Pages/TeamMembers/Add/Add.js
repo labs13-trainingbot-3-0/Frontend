@@ -74,7 +74,8 @@ function Add(props) {
       state.teamMember.first_name &&
       state.teamMember.last_name &&
       state.teamMember.job_description &&
-      !phoneNumberTest(state.teamMember.phone_number)
+      !phoneNumberTest(state.teamMember.phone_number) &&
+      state.teamMember.email
     );
     dispatch({ type: "UPDATE_DISABLED", payload });
   }, [state.teamMember]);

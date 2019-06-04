@@ -462,17 +462,17 @@ We've configured a one-click deploy to Netlify that will allow you to get the fr
 
 TODO: Write Auth section
 
-    Probably just want to write a description on how auth system works
+Probably just want to write a description on how auth system works
 
 ## Store
 
-    The actions/store setup for this application are fairly standard for react/redux applications you've likely worked with in the past. You'll notice that actions are split into separate folders based on what they're used for. All actions are being exported via index.js and can be referenced as such. Reducers are similar, in that they are being split into separate reducers dependent on usage and combined via Redux's "combineReducers". You can reference individual reducers via their specific files. The store itself lives entirely inside of index.js "rootReducer".
+The actions/store setup for this application are fairly standard for react/redux applications you've likely worked with in the past. You'll notice that actions are split into separate folders based on what they're used for. All actions are being exported via index.js and can be referenced as such. Reducers are similar, in that they are being split into separate reducers dependent on usage and combined via Redux's "combineReducers". You can reference individual reducers via their specific files. The store itself lives entirely inside of index.js "rootReducer".
 
 ## Maintainers
 
-| ![Andrew Brush](https://github.com/ajb85.png) | ![Nick Cannariato](https://github.com/nickcannariato.png) | ![Adam McKenney](https://github.com/DaftBeowulf.png) | ![Gannon Darcy](https://github.com/GannonDetroit.png) | ![Thomas Hessburg](https://github.com/TomHessburg.png) |
-| --------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------ |
-| [@ajb85](https://github.com/ajb85)            | [@nickcannariato](https://github.com/nickcannariato)      | [@DaftBeowulf](https://github.com/DaftBeowulf)       | [@GannonDetroit](https://github.com/GannonDetroit)    | [@TomHessburg](https://github.com/TomHessburg)         |
+| ![Divya Nair](https://github.com/dsnair.png) | ![Thomas Folbecht](https://github.com/tfolbrecht.png) | ![Benjamin Chandler](https://github.com/chandlerben.png) | ![Joe Bugajski](https://github.com/JoeBugajski.png)  |
+| --------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
+| [@dsnair](https://github.com/dsnair) | [@tfolbrecht](https://github.com/tfolbrecht) | [@chandlerben](https://github.com/chandlerben) | [@JoeBugajski](https://github.com/JoeBugajski) |
 
 ## License
 

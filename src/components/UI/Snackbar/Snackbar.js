@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
 
-// import PropTypes from "prop-types";
 import classNames from "classnames";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ErrorIcon from "@material-ui/icons/Error";
@@ -134,7 +133,7 @@ class CustomizedSnackbars extends React.Component {
         <Snackbar
           anchorOrigin={{
             vertical: "bottom",
-            horizontal: "left"
+            horizontal: "center"
           }}
           open={this.state.open}
           onClose={this.handleClose}

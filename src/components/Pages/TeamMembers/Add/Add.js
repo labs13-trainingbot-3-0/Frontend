@@ -105,18 +105,18 @@ function Add(props) {
   const addNewTeamMember = e => {
     e.preventDefault()
     const { teamMember } = state
-    if (teamMember.manager_id === '') {
-      teamMember.manager_id = null
-    }
-    if (teamMember.mentor_id === '') {
-      teamMember.mentor_id = null
-    }
     const isEmailUnique = teamMembers.filter(
       member => member.email === teamMember.email
     )
     if (isEmailUnique.length) {
       setDisplaySnackbar(true)
     } else {
+      if (teamMember.manager_id === '') {
+        teamMember.manager_id = null
+      }
+      if (teamMember.mentor_id === '') {
+        teamMember.mentor_id = null
+      }
       addTeamMember(state.teamMember)
       dispatch({ type: 'TOGGLE_ROUTING' })
       dispatch({ type: 'DISPLAY_SNACKBAR', payload: true })

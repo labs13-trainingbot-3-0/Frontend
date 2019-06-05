@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useReducer, useEffect, useState } from "react";
 import { connect } from "react-redux";
+=======
+import React, { useReducer, useEffect, useState } from 'react'
+import { connect } from 'react-redux'
+>>>>>>> master
 
 import { nopass, nopassadmin } from "../../../../Auth/Auth"
 
@@ -11,30 +16,43 @@ import {
   getNotifications,
   addNotification,
   deleteNotification
-} from "store/actions";
-import history from "history.js";
+} from 'store/actions'
+import history from 'history.js'
 
-import { initialState, reducer } from "./reducer";
-import MemberInfoForm from "./helpers/MemberInfoForm.js";
-import Relationships from "./helpers/Relationships.js";
-import SelectSlackID from "./helpers/SelectSlackID.js";
-import Buttons from "./helpers/Buttons.js";
-import phoneNumberTest from "./helpers/testPhoneNumber.js";
-import InfoPopup from "components/UI/InfoPopup/InfoPopup.js";
-import updateNotifications from "./helpers/updateNotifications.js";
+import { initialState, reducer } from './reducer'
+import MemberInfoForm from './helpers/MemberInfoForm.js'
+import Relationships from './helpers/Relationships.js'
+import SelectSlackID from './helpers/SelectSlackID.js'
+import Buttons from './helpers/Buttons.js'
+import phoneNumberTest from './helpers/testPhoneNumber.js'
+import InfoPopup from 'components/UI/InfoPopup/InfoPopup.js'
+import updateNotifications from './helpers/updateNotifications.js'
 
+<<<<<<< HEAD
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Snackbar from "components/UI/Snackbar/Snackbar";
+=======
+import { withStyles } from '@material-ui/core/styles'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
+import Snackbar from 'components/UI/Snackbar/Snackbar'
+>>>>>>> master
 import {
   styles,
   MainContainer,
   MemberInfoContainer,
   AddTeamMemberTitleContainer
+<<<<<<< HEAD
 } from "./styles.js";
+=======
+} from "./styles.js"
+import Button from "@material-ui/core/Button"
+>>>>>>> master
 
 function Add(props) {
   const {
@@ -50,24 +68,29 @@ function Add(props) {
     teamMembers,
     notifications,
     messages
-  } = props;
+  } = props
 
+<<<<<<< HEAD
   const [state, dispatch] = useReducer(reducer, initialState);
   const [displaySnackbar, setDisplaySnackbar] = useState(false);
+=======
+  const [state, dispatch] = useReducer(reducer, initialState)
+  const [displaySnackbar, setDisplaySnackbar] = useState(false)
+>>>>>>> master
 
   useEffect(() => {
     // CDM
-    getAllMessages();
-    getNotifications();
-    getTeamMembers();
-    dispatch({ type: "UPDATE_MEMBER", key: "user_id", payload: user_id });
+    getAllMessages()
+    getNotifications()
+    getTeamMembers()
+    dispatch({ type: 'UPDATE_MEMBER', key: 'user_id', payload: user_id })
     if (teamMember) {
-      const manager_id = teamMember.manager_id ? teamMember.manager_id : "";
-      const mentor_id = teamMember.mentor_id ? teamMember.mentor_id : "";
+      const manager_id = teamMember.manager_id ? teamMember.manager_id : ''
+      const mentor_id = teamMember.mentor_id ? teamMember.mentor_id : ''
       dispatch({
-        type: "EDITING_MEMBER",
+        type: 'EDITING_MEMBER',
         payload: { ...teamMember, manager_id, mentor_id }
-      });
+      })
     }
   }, [
     getAllMessages,
@@ -76,7 +99,7 @@ function Add(props) {
     user_id,
     dispatch,
     teamMember
-  ]);
+  ])
 
   useEffect(() => {
     // Checks input conditions.  If all required field conditions are met, Add Member button is activated
@@ -86,16 +109,22 @@ function Add(props) {
       state.teamMember.job_description &&
       !phoneNumberTest(state.teamMember.phone_number) &&
       state.teamMember.email
+<<<<<<< HEAD
     );
     dispatch({ type: "UPDATE_DISABLED", payload });
   }, [state.teamMember]);
+=======
+    )
+    dispatch({ type: 'UPDATE_DISABLED', payload })
+  }, [state.teamMember])
+>>>>>>> master
 
   const updateMember = (key, value) => {
-    dispatch({ type: "UPDATE_MEMBER", key, payload: value });
-  };
+    dispatch({ type: 'UPDATE_MEMBER', key, payload: value })
+  }
 
   const editExistingMember = e => {
-    e.preventDefault();
+    e.preventDefault()
     const updateNotifObj = {
       state,
       teamMembers,
@@ -103,14 +132,15 @@ function Add(props) {
       messages,
       deleteNotification,
       addNotification
-    };
-    updateNotifications(updateNotifObj);
-    editTeamMember(state.teamMember);
-    dispatch({ type: "DISPLAY_SNACKBAR", payload: true });
-    history.push("/home");
-  };
+    }
+    updateNotifications(updateNotifObj)
+    editTeamMember(state.teamMember)
+    dispatch({ type: 'DISPLAY_SNACKBAR', payload: true })
+    history.push('/home')
+  }
 
   const addNewTeamMember = e => {
+<<<<<<< HEAD
     e.preventDefault();
     const { teamMember } = state;
     const isEmailUnique = teamMembers.filter(
@@ -131,17 +161,39 @@ function Add(props) {
       history.push("/home");
     }
   };
+=======
+    e.preventDefault()
+    const { teamMember } = state
+    const isEmailUnique = teamMembers.filter(
+      member => member.email === teamMember.email
+    )
+    if (isEmailUnique.length) {
+      setDisplaySnackbar(true)
+    } else {
+      if (teamMember.manager_id === '') {
+        teamMember.manager_id = null
+      }
+      if (teamMember.mentor_id === '') {
+        teamMember.mentor_id = null
+      }
+      addTeamMember(state.teamMember)
+      dispatch({ type: 'TOGGLE_ROUTING' })
+      dispatch({ type: 'DISPLAY_SNACKBAR', payload: true })
+      history.push('/home')
+    }
+  }
+>>>>>>> master
 
-  const { classes } = props;
+  const { classes } = props
   return (
     <MainContainer
-      style={{ position: "relative" }}
+      style={{ position: 'relative' }}
       maxWidth={props.maxWidth}
       maxHeight={props.maxHeight}
     >
       <InfoPopup
         left="10px"
-        style={{ position: "relative" }}
+        style={{ position: 'relative' }}
         popOverText={
           <p>
             On this page you can add a new Team Member! If you've already got
@@ -166,8 +218,7 @@ function Add(props) {
         }
       >
         <Paper className={classes.paper}>
-          {/* <div className={classes.}> */}
-          <AddTeamMemberTitleContainer>
+        <AddTeamMemberTitleContainer>
             <Typography variant="title">
               {teamMember ? "Edit Team Member" : "Add New Team Member"}
             </Typography>
@@ -177,13 +228,10 @@ function Add(props) {
               className={
                 teamMember ? classes.magicLinkButton : classes.hiddenButton
               }
-              // status={teamMember ? "edit" : "add"}
-              // display={teamMember ? ""}
             >
               Send Login Link
             </Button>
           </AddTeamMemberTitleContainer>
-          {/* </div> */}
           <Divider className={classes.divider} />
           <MemberInfoContainer>
             <MemberInfoForm
@@ -206,19 +254,19 @@ function Add(props) {
           <Buttons
             state={state}
             classes={classes}
-            status={teamMember ? "edit" : "add"}
+            status={teamMember ? 'edit' : 'add'}
           />
         </Paper>
       </form>
     </MainContainer>
-  );
+  )
 }
 
 const mapStateToProps = state => ({
   messages: state.messagesReducer.messages,
   notifications: state.notificationsReducer.notifications,
   teamMembers: state.teamMembersReducer.teamMembers
-});
+})
 
 export default connect(
   mapStateToProps,
@@ -231,4 +279,4 @@ export default connect(
     addNotification,
     deleteNotification
   }
-)(withStyles(styles)(Add));
+)(withStyles(styles)(Add))

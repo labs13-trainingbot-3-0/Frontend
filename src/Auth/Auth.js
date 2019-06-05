@@ -2,9 +2,6 @@
 import auth0 from "auth0-js";
 import decode from "jwt-decode";
 
-//Config variables
-import { AUTH_CONFIG } from "./auth0-variables";
-
 //History
 import history from "history.js";
 
@@ -12,17 +9,18 @@ import history from "history.js";
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
 
+//Config variables
 const auth = new auth0.WebAuth({
-  clientID: AUTH_CONFIG.clientId,
-  domain: AUTH_CONFIG.domain
+  clientID: process.env.REACT_APP_CLIENTID,
+  domain: process.env.REACT_APP_DOMAIN,
+  callbackUrl: process.env.REACT_APP_LOCAL || process.env.REACT_APP_PROD
 });
-
 
 //Logs user in
 export const login = () => {
   auth.authorize({
     responseType: "token id_token",
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    redirectUri: auth.callbackUrl,
     scope: "openid email profile"
   });
 };

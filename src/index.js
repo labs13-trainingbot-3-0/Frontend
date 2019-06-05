@@ -8,6 +8,7 @@ NODE_PATH=src/
 Resource:
 https://medium.com/@ktruong008/absolute-imports-with-create-react-app-4338fbca7e3d
 */
+import dotenv from "dotenv";
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -15,9 +16,7 @@ import ReactDOM from "react-dom";
 import Routes from "./BaseRoutes";
 import "./index.css";
 
-import dotenv from "dotenv";
-dotenv.config();
-
-console.log(require('dotenv').config())
+dotenv.config()
+console.log(process.env)
 
 ReactDOM.render(<Routes />, document.getElementById("root"));

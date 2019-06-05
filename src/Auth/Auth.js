@@ -28,10 +28,10 @@ export const loginbounce = () => {
 };
 
 // login modal with lock
-var lock = new Auth0LockPasswordless(
-  process.env.REACT_APP_AUTH0_CLIENTID,
-  process.env.REACT_APP_AUTH0_DOMAIN
-);
+// var lock = new Auth0LockPasswordless(
+//   process.env.REACT_APP_AUTH0_CLIENTID,
+//   process.env.REACT_APP_AUTH0_DOMAIN
+// );
 
 //Logs user in
 export const login = () => {
@@ -43,21 +43,24 @@ export const login = () => {
 };
 
 export const nopass = () => {
-  new Auth0LockPasswordless(
+  var lock = new Auth0LockPasswordless(
     process.env.REACT_APP_AUTH0_CLIENTID,
     process.env.REACT_APP_AUTH0_DOMAIN,
     {
+      passwordlessMethod: "link",
       responseType: "token id_token",
+      auth: {
         redirectUrl: process.env.REACT_APP_PROD, // If not specified, defaults to the current page
         params: {
           scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
         }
-    },
-    lock.show({
-      allowedConnections: ["email", "sms"],
-      passwordlessMethod: "link"
-    }) // Sets Lock to use magic link
+      }
+    }
   );
+  lock.show({
+    allowedConnections: ["email"],
+    passwordlessMethod: "link"
+  });
 };
 
 //Logs the user out and clears local storage

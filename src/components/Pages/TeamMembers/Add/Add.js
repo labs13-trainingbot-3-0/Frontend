@@ -1,6 +1,8 @@
 import React, { useReducer, useEffect, useState } from "react";
 import { connect } from "react-redux";
 
+import { nopass } from "../../../../Auth/Auth"
+
 import {
   addTeamMember,
   editTeamMember,
@@ -170,6 +172,7 @@ function Add(props) {
               {teamMember ? "Edit Team Member" : "Add New Team Member"}
             </Typography>
             <Button
+              onClick={nopass}
               state={state}
               className={
                 teamMember ? classes.magicLinkButton : classes.hiddenButton
@@ -181,9 +184,6 @@ function Add(props) {
             </Button>
           </AddTeamMemberTitleContainer>
           {/* </div> */}
-          <Typography variant="title">
-            {teamMember ? "Edit Team Member" : "Add New Team Member"}
-          </Typography>
           <Divider className={classes.divider} />
           <MemberInfoContainer>
             <MemberInfoForm

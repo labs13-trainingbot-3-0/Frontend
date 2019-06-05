@@ -38,7 +38,7 @@ export const styles = theme => ({
 export const MainContainer = styled.div`
   margin: 0 auto;
   width: 60%;
-  min-width:470px;
+  min-width: 470px;
   max-width: 700px;
 `;
 

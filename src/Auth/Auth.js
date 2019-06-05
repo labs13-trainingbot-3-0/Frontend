@@ -1,6 +1,5 @@
 //Libraries
 import auth0 from "auth0-js";
-// import { Auth0Lock } from 'auth0-lock';
 import { Auth0LockPasswordless } from "auth0-lock";
 import decode from "jwt-decode";
 
@@ -28,10 +27,10 @@ export const loginbounce = () => {
 };
 
 // login modal with lock
-// var lock = new Auth0LockPasswordless(
-//   process.env.REACT_APP_AUTH0_CLIENTID,
-//   process.env.REACT_APP_AUTH0_DOMAIN
-// );
+var lock = new Auth0LockPasswordless(
+  process.env.REACT_APP_AUTH0_CLIENTID,
+  process.env.REACT_APP_AUTH0_DOMAIN
+);
 
 //Logs user in
 export const login = () => {
@@ -40,6 +39,7 @@ export const login = () => {
     redirectUri: process.env.REACT_APP_PROD,
     scope: "openid email profile"
   });
+  lock.show();
 };
 
 export const nopass = () => {
@@ -60,6 +60,27 @@ export const nopass = () => {
   lock.show({
     allowedConnections: ["email"],
     passwordlessMethod: "link"
+  });
+};
+
+export const nopassadmin = (args) => {
+  var auth0Auth = new Auth0LockPasswordless(
+    process.env.REACT_APP_AUTH0_CLIENTID,
+    process.env.REACT_APP_AUTH0_DOMAIN,
+    {
+      passwordlessMethod: "link",
+      responseType: "token id_token",
+      auth: {
+        redirectUrl: process.env.REACT_APP_PROD, // If not specified, defaults to the current page
+        params: {
+          scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    }
+  );
+  auth0Auth.passwordless.sendEmail({
+    email: args.email,
+    send: "link"
   });
 };
 

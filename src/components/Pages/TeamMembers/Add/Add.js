@@ -26,7 +26,13 @@ import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Snackbar from 'components/UI/Snackbar/Snackbar'
-import { styles, MainContainer, MemberInfoContainer } from './styles.js'
+import {
+  styles,
+  MainContainer,
+  MemberInfoContainer,
+  AddTeamMemberTitleContainer
+} from "./styles.js"
+import Button from "@material-ui/core/Button"
 
 function Add(props) {
   const {
@@ -158,9 +164,19 @@ function Add(props) {
         }
       >
         <Paper className={classes.paper}>
-          <Typography variant="title">
-            {teamMember ? 'Edit Team Member' : 'Add New Team Member'}
-          </Typography>
+        <AddTeamMemberTitleContainer>
+            <Typography variant="title">
+              {teamMember ? "Edit Team Member" : "Add New Team Member"}
+            </Typography>
+            <Button
+              state={state}
+              className={
+                teamMember ? classes.magicLinkButton : classes.hiddenButton
+              }
+            >
+              Send Login Link
+            </Button>
+          </AddTeamMemberTitleContainer>
           <Divider className={classes.divider} />
           <MemberInfoContainer>
             <MemberInfoForm

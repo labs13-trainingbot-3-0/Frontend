@@ -56,6 +56,18 @@ export const styles = theme => ({
       color: "white"
     }
   },
+  magicLinkButton: {
+    marginLeft: theme.spacing.unit,
+    background: "#451476",
+    color: "white",
+    "&:hover": {
+      background: "#591a99",
+      color: "white"
+    }
+  },
+  hiddenButton: {
+    display: "none"
+  },
   Editbutton: {
     "margin-left": theme.spacing.unit,
     background: "#451476",
@@ -101,6 +113,12 @@ export const MainContainer = styled.div`
     width: 95%;
     margin: auto;
   }
+`;
+
+export const AddTeamMemberTitleContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
 `;
 
 export const MemberInfoContainer = styled.div`

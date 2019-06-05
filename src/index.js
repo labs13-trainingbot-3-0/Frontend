@@ -17,6 +17,6 @@ import Routes from "./BaseRoutes";
 import "./index.css";
 
 dotenv.config()
-console.log(process.env)
+
 
 ReactDOM.render(<Routes />, document.getElementById("root"));

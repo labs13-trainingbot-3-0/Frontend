@@ -115,12 +115,6 @@ export const MainContainer = styled.div`
   }
 `;
 
-export const AddTeamMemberTitleContainer = styled.div`
-  display: flex;
-  margin-top: 10px;
-  justify-content: space-between;
-`;
-
 export const MemberInfoContainer = styled.div`
   display: flex;
   justify-content: space-evenly;

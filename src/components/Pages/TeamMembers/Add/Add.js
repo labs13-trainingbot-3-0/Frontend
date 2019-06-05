@@ -25,7 +25,13 @@ import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-import { styles, MainContainer, MemberInfoContainer } from "./styles.js";
+import {
+  styles,
+  MainContainer,
+  MemberInfoContainer,
+  AddTeamMemberTitleContainer
+} from "./styles.js";
+import Button from "@material-ui/core/Button";
 
 function Add(props) {
   const {
@@ -142,9 +148,23 @@ function Add(props) {
         }
       >
         <Paper className={classes.paper}>
-          <Typography variant="title">
-            {teamMember ? "Edit Team Member" : "Add New Team Member"}
-          </Typography>
+          {/* <div className={classes.}> */}
+          <AddTeamMemberTitleContainer>
+            <Typography variant="title">
+              {teamMember ? "Edit Team Member" : "Add New Team Member"}
+            </Typography>
+            <Button
+              state={state}
+              className={
+                teamMember ? classes.magicLinkButton : classes.hiddenButton
+              }
+              // status={teamMember ? "edit" : "add"}
+              // display={teamMember ? ""}
+            >
+              Send Login Link
+            </Button>
+          </AddTeamMemberTitleContainer>
+          {/* </div> */}
           <Divider className={classes.divider} />
           <MemberInfoContainer>
             <MemberInfoForm

@@ -56,6 +56,18 @@ export const styles = theme => ({
       color: "white"
     }
   },
+  magicLinkButton: {
+    marginLeft: theme.spacing.unit,
+    background: "#451476",
+    color: "white",
+    "&:hover": {
+      background: "#591a99",
+      color: "white"
+    }
+  },
+  hiddenButton: {
+    display: "none"
+  },
   Editbutton: {
     "margin-left": theme.spacing.unit,
     background: "#451476",
@@ -122,6 +134,12 @@ export const ButtonContainer = styled.div`
   justify-content: center;
 `;
 
+export const AddTeamMemberTitleContainer = styled.div`
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+`;
+
 export const LoadingImage = styled.img`
   width: 32px;
   height: auto;
@@ -174,9 +192,8 @@ export const SlackButton = styled.button`
     }
   }
   @media (max-width: 590px) {
-      width: 100%;
-      max-width: none;
-      margin: 16px auto 0;
-    }    
+    width: 100%;
+    max-width: none;
+    margin: 16px auto 0;
   }
 `;

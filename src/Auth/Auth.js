@@ -25,7 +25,6 @@ export const loginbounce = () => {
     redirectUri: auth.callbackUrl,
     scope: "openid email profile"
   });
-  lock.show();
 };
 
 // login modal with lock
@@ -34,22 +33,22 @@ var lock = new Auth0LockPasswordless(
   process.env.REACT_APP_AUTH0_DOMAIN
 );
 
+//Logs user in
 export const login = () => {
   auth.authorize({
     responseType: "token id_token",
-    redirectUri: auth.callbackUrl,
+    redirectUri: process.env.REACT_APP_PROD,
     scope: "openid email profile"
   });
-  lock.show();
 };
 
-export const nopassword = () => {
+export const nopass = () => {
   new Auth0LockPasswordless(
     process.env.REACT_APP_AUTH0_CLIENTID,
     process.env.REACT_APP_AUTH0_DOMAIN,
     {
       responseType: "token id_token",
-        redirectUrl: auth.callbackUrl, // If not specified, defaults to the current page
+        redirectUrl: process.env.REACT_APP_PROD, // If not specified, defaults to the current page
         params: {
           scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
         }

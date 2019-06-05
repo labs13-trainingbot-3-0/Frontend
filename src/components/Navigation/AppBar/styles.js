@@ -10,12 +10,6 @@ export const NavigationContainer = styled.div`
   padding-bottom: 10px;
   border-bottom: 1px solid #eeeeee;
 `;
-export const NavigationTop = styled.div`
-  background-color: #3ebd93;
-  width: 100%;
-  padding: 8px 0;
-  margin-bottom: 10px;
-`;
 export const NavItemsContainer = styled.div`
   display: flex;
   box-sizing: border-box;

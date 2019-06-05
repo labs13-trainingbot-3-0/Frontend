@@ -7,7 +7,6 @@ import HelpOutline from "@material-ui/icons/HelpOutline";
 //Styling
 import {
   NavigationContainer,
-  NavigationTop,
   NavItemsContainer,
   NavLinkItems,
   NavigationLogo,
@@ -26,7 +25,6 @@ class AppBar extends Component {
   render() {
     return (
       <NavigationContainer>
-        <NavigationTop />
         <NavItemsContainer>
           {this.props.history.location.pathname === "/" ? (
             <>

@@ -140,28 +140,6 @@ function Add(props) {
   }
 
   const addNewTeamMember = e => {
-<<<<<<< HEAD
-    e.preventDefault();
-    const { teamMember } = state;
-    const isEmailUnique = teamMembers.filter(
-      member => member.email === teamMember.email
-    );
-    if (isEmailUnique.length) {
-      setDisplaySnackbar(true);
-    } else {
-      if (teamMember.manager_id === "") {
-        teamMember.manager_id = null;
-      }
-      if (teamMember.mentor_id === "") {
-        teamMember.mentor_id = null;
-      }
-      addTeamMember(state.teamMember);
-      dispatch({ type: "TOGGLE_ROUTING" });
-      dispatch({ type: "DISPLAY_SNACKBAR", payload: true });
-      history.push("/home");
-    }
-  };
-=======
     e.preventDefault()
     const { teamMember } = state
     const isEmailUnique = teamMembers.filter(
@@ -182,7 +160,6 @@ function Add(props) {
       history.push('/home')
     }
   }
->>>>>>> master
 
   const { classes } = props
   return (

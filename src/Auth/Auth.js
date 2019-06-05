@@ -1,5 +1,7 @@
 //Libraries
 import auth0 from "auth0-js";
+// import { Auth0Lock } from 'auth0-lock';
+import { Auth0LockPasswordless } from "auth0-lock";
 import decode from "jwt-decode";
 
 //History
@@ -11,18 +13,52 @@ const ACCESS_TOKEN_KEY = "access_token";
 
 //Config variables
 const auth = new auth0.WebAuth({
-  clientID: process.env.REACT_APP_CLIENTID,
-  domain: process.env.REACT_APP_DOMAIN,
-  callbackUrl: process.env.REACT_APP_LOCAL || process.env.REACT_APP_PROD
+  clientID: process.env.REACT_APP_AUTH0_CLIENTID,
+  domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  callbackUrl: process.env.REACT_APP_PROD
 });
 
 //Logs user in
+export const loginbounce = () => {
+  auth.authorize({
+    responseType: "token id_token",
+    redirectUri: auth.callbackUrl,
+    scope: "openid email profile"
+  });
+  lock.show();
+};
+
+// login modal with lock
+var lock = new Auth0LockPasswordless(
+  process.env.REACT_APP_AUTH0_CLIENTID,
+  process.env.REACT_APP_AUTH0_DOMAIN
+);
+
 export const login = () => {
   auth.authorize({
     responseType: "token id_token",
     redirectUri: auth.callbackUrl,
     scope: "openid email profile"
   });
+  lock.show();
+};
+
+export const nopassword = () => {
+  new Auth0LockPasswordless(
+    process.env.REACT_APP_AUTH0_CLIENTID,
+    process.env.REACT_APP_AUTH0_DOMAIN,
+    {
+      responseType: "token id_token",
+        redirectUrl: auth.callbackUrl, // If not specified, defaults to the current page
+        params: {
+          scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
+        }
+    },
+    lock.show({
+      allowedConnections: ["email", "sms"],
+      passwordlessMethod: "link"
+    }) // Sets Lock to use magic link
+  );
 };
 
 //Logs the user out and clears local storage

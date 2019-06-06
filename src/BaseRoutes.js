@@ -31,7 +31,7 @@ function Routes() {
       <Router history={history}>
         <Route exact path="/" component={LandingPage} />
         <Route path="/pricing" component={Pricing} />
-        {/* <Route path="/teammember" component={Team} /> */}
+        <Route path="/team" component={Team} />
         <Route path="/home" component={authenticate(LoadDashboard)} />
         <Route path="/teammember" component={TeamDashboard} />
         <Route path="/callback" component={Callback} />

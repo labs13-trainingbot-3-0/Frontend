@@ -4,20 +4,18 @@ import { connect } from "react-redux";
 import { getAllResponses } from "store/actions";
 
 import SearchCard from "components/UI/SearchCard/";
-// import TeamMembersOverview from "components/Pages/TeamMembers/List/Overview";
 import TeamMembersTab from "components/Pages/TeamMembers/List/Tab";
 import TrainingSeriesOverview from "components/Pages/TrainingSeries/List/Overview";
 import TrainingSeriesTab from "components/Pages/TrainingSeries/List/Tab";
-import NotificationsCard from "components/Pages/Notifications/Card";
-import NotificationsOverview from "components/Pages/Notifications/Card/Overview/Overview.js";
-import Responses from "components/Pages/Notifications/Responses";
+import NotificationsCard from "components/Pages/TeamDashboard/Notifications/Card";
+import NotificationsOverview from "components/Pages/TeamDashboard/Notifications/Card/Overview/Overview";
+import Responses from "components/Pages/TeamDashboard/Notifications/Responses";
 import TabNavigation from "./helpers/TabNavigation.js";
 import DektopNavigation from "./helpers/DesktopNavigation.js";
 
 import {
   TripleColumn,
   SmallColumns,
-  Divider,
   DashWrapper,
   MobileNav,
   DesktopNav
@@ -61,15 +59,6 @@ function Dashboard(props) {
         {topTab === "overview" && (
           <>
             <SmallColumns>
-              {/* <SearchCard
-                user_id={user_id}
-                List={TeamMembersOverview}
-                containerTourNum="1"
-                section="Team Members"
-                headerTourNum={["2", "3"]}
-                handleAdd={() => history.push("/home/create-team-member")}
-              /> */}
-              {/* <Divider /> */}
               <SearchCard
                 user_id={user_id}
                 List={TrainingSeriesOverview}
@@ -78,7 +67,6 @@ function Dashboard(props) {
                 handleAdd={() => history.push("/home/create-training-series")}
               />
             </SmallColumns>
-            <NotificationsCard List={NotificationsOverview} user_id={user_id} />
           </>
         )}
 

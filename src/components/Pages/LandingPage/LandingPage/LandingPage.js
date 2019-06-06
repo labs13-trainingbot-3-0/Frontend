@@ -31,7 +31,7 @@ import undrawNotify from "img/undraw_notify_88a4.svg";
 import undrawTask from "img/undraw_personal_text_vkd8.svg";
 
 //Auth
-import { login } from "Auth/Auth";
+import { login, nopass } from "Auth/Auth";
 
 class LandingPage extends React.Component {
   scrollTo() {
@@ -56,6 +56,7 @@ class LandingPage extends React.Component {
               <NavbarItem href="/team">Team</NavbarItem>
               <NavbarItem href="/pricing">Pricing</NavbarItem>
               <h2 onClick={login}>Sign In</h2>
+              <h2 onClick={nopass}>Team Member Sign In</h2>
             </NavbarItemsContainer>
           </NavbarContainer>
           {/* JUMBOTRON STYLED SECTION */}
@@ -69,7 +70,7 @@ class LandingPage extends React.Component {
                 clicks.
               </p>
               <LandingPageButtonContainer>
-                <Button onClick={login}>Get Started</Button>
+                <Button onClick={nopass}>Get Started</Button>
                 <Button variant="outlined" onClick={() => this.scrollTo(500)}>
                   Learn More
                 </Button>

@@ -2,6 +2,7 @@ import axios from "axios";
 
 //GET USER
 export const GET_USER_START = "GET_USER_START";
+export const GET_USER_TYPE = "GET_USER_TYPE";
 export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
 export const GET_USER_FAIL = "GET_USER_FAIL";
 //EDIT USER
@@ -27,6 +28,7 @@ export const getUser = () => dispatch => {
     })
     .catch(err => dispatch({ type: GET_USER_FAIL, error: err }));
 };
+
 //--EDIT USER--
 export const editUser = (id, updatedData) => dispatch => {
   dispatch({ type: EDIT_USER_START });

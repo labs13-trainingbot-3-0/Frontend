@@ -10,6 +10,7 @@ import Team from "components/Pages/LandingPage/Team";
 import LoadDashboard from "components/Pages/Dashboard/Loader/";
 
 import Callback from "components/Misc/Callback/Callback.js";
+import teamCallback from "components/Misc/Callback/TeamCallback.js"
 import SlackCallback from "components/Misc/Callback/SlackCallback.js";
 import authenticate from "components/Misc/authenticate/authenticate.js";
 import rootReducer from "store/reducers";
@@ -29,9 +30,10 @@ function Routes() {
       <Router history={history}>
         <Route exact path="/" component={LandingPage} />
         <Route path="/pricing" component={Pricing} />
-        <Route path="/team" component={Team} />
+        <Route path="/teammember" component={Team} />
         <Route path="/home" component={authenticate(LoadDashboard)} />
         <Route path="/callback" component={Callback} />
+        <Route path="/teamcallback" component={teamCallback} />
         <Route path="/slack-callback" component={SlackCallback} />
       </Router>
     </Provider>

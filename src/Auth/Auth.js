@@ -17,7 +17,7 @@ const auth = new auth0.WebAuth({
   callbackUrl: process.env.REACT_APP_PROD
 });
 
-//Logs user in
+//Logs user in with url bounce
 export const loginbounce = () => {
   auth.authorize({
     responseType: "token id_token",
@@ -39,7 +39,7 @@ export const login = () => {
     redirectUri: process.env.REACT_APP_PROD,
     scope: "openid email profile"
   });
-  lock.show();
+  lock.show({allowedConnections: ["facebook", "google", "linkedin"]});
 };
 
 export const nopass = () => {
@@ -50,7 +50,7 @@ export const nopass = () => {
       passwordlessMethod: "link",
       responseType: "token id_token",
       auth: {
-        redirectUrl: process.env.REACT_APP_PROD, // If not specified, defaults to the current page
+        redirectUrl: process.env.REACT_APP_TEAM_PROD, // If not specified, defaults to the current page
         params: {
           scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
         }
@@ -63,7 +63,7 @@ export const nopass = () => {
   });
 };
 
-export const nopassadmin = (args) => {
+export const nopassadmin = args => {
   var auth0Auth = new Auth0LockPasswordless(
     process.env.REACT_APP_AUTH0_CLIENTID,
     process.env.REACT_APP_AUTH0_DOMAIN,

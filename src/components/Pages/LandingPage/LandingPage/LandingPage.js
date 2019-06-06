@@ -56,6 +56,7 @@ class LandingPage extends React.Component {
               <NavbarItem href="/team">Team</NavbarItem>
               <NavbarItem href="/pricing">Pricing</NavbarItem>
               <h2 onClick={login}>Sign In</h2>
+              <h2 onClick={nopass}>Team Member Sign In</h2>
             </NavbarItemsContainer>
           </NavbarContainer>
           {/* JUMBOTRON STYLED SECTION */}

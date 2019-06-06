@@ -21,14 +21,14 @@ function Routes(props) {
     setDisplaySnackbar(false);
   };
   const activateTutorial = () => {
-    props.history.push("/teamMember");
+    props.history.push("/teammember");
     setIsTourOpen(true);
   };
   return (
     <Router history={history}>
       <Route
         exact
-        path="/teamMember/help"
+        path="/teammember/help"
         render={renderProps => (
           <HelpModal
             {...renderProps}
@@ -39,7 +39,7 @@ function Routes(props) {
       />
       <Route
         exact
-        path="/teamMember/contact"
+        path="/teammember/contact"
         render={renderProps => (
           <ContactModal
             {...renderProps}
@@ -50,7 +50,7 @@ function Routes(props) {
       />
       <Route
         exact
-        path="/teamMember"
+        path="/teammember"
         render={renderProps => (
           <Dashboard
             {...renderProps}
@@ -61,7 +61,7 @@ function Routes(props) {
         )}
       />
       <Route
-        path="/teamMember/profile"
+        path="/teammember/profile"
         render={renderProps => (
           <Profile
             {...renderProps}
@@ -71,41 +71,41 @@ function Routes(props) {
         )}
       />
       <Route
-        path="/teamMember/team-member/:id"
+        path="/teammember/team-member/:id"
         render={renderProps => (
           <EditTeamMember {...renderProps} user_id={props.user.id} />
         )}
       />
       <Route
-        path="/teamMember/create-team-member/"
+        path="/teammember/create-team-member/"
         render={renderProps => (
           <AddTeamMember {...renderProps} user_id={props.user.id} />
         )}
       />
       <Route
-        path="/teamMember/create-training-series"
+        path="/teammember/create-training-series"
         render={renderProps => (
           <CreateTrainingSeries {...renderProps} user_id={props.user.id} />
         )}
       />
       <Route
-        path="/teamMember/training-series/:id"
+        path="/teammember/training-series/:id"
         render={renderProps => (
           <EditTrainingSeries {...renderProps} user_id={props.user.id} />
         )}
       />
       <Route
-        path="/teamMember/create-message"
+        path="/teammember/create-message"
         render={renderProps => <CreateMessage {...renderProps} />}
       />
 
       <Route
-        path="/teamMember/assign-members/:id"
+        path="/teammember/assign-members/:id"
         render={renderProps => (
           <AddMemberToTrainingSeries {...renderProps} user_id={props.user.id} />
         )}
       />
-      <Route path="/teamMember/message/:id" component={MessagePage} />
+      <Route path="/teammember/message/:id" component={MessagePage} />
     </Router>
   );
 }

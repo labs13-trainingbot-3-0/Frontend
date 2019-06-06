@@ -8,6 +8,7 @@ import LandingPage from "components/Pages/LandingPage/LandingPage/";
 import Pricing from "components/Pages/LandingPage/Pricing";
 import Team from "components/Pages/LandingPage/Team";
 import LoadDashboard from "components/Pages/Dashboard/Loader/";
+import TeamDashboard from "components/Pages/TeamDashboard/Loader/";
 
 import Callback from "components/Misc/Callback/Callback.js";
 import SlackCallback from "components/Misc/Callback/SlackCallback.js";
@@ -31,6 +32,7 @@ function Routes() {
         <Route path="/pricing" component={Pricing} />
         <Route path="/team" component={Team} />
         <Route path="/home" component={authenticate(LoadDashboard)} />
+        <Route path="/teamMember" component={TeamDashboard} />
         <Route path="/callback" component={Callback} />
         <Route path="/slack-callback" component={SlackCallback} />
       </Router>

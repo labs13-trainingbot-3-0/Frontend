@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { getAllResponses } from "store/actions";
 
 import SearchCard from "components/UI/SearchCard/";
-import TeamMembersOverview from "components/Pages/TeamMembers/List/Overview";
+// import TeamMembersOverview from "components/Pages/TeamMembers/List/Overview";
 import TeamMembersTab from "components/Pages/TeamMembers/List/Tab";
 import TrainingSeriesOverview from "components/Pages/TrainingSeries/List/Overview";
 import TrainingSeriesTab from "components/Pages/TrainingSeries/List/Tab";
@@ -61,15 +61,15 @@ function Dashboard(props) {
         {topTab === "overview" && (
           <>
             <SmallColumns>
-              <SearchCard
+              {/* <SearchCard
                 user_id={user_id}
                 List={TeamMembersOverview}
                 containerTourNum="1"
                 section="Team Members"
                 headerTourNum={["2", "3"]}
                 handleAdd={() => history.push("/home/create-team-member")}
-              />
-              <Divider />
+              /> */}
+              {/* <Divider /> */}
               <SearchCard
                 user_id={user_id}
                 List={TrainingSeriesOverview}

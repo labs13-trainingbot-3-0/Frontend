@@ -31,9 +31,9 @@ function Routes() {
       <Router history={history}>
         <Route exact path="/" component={LandingPage} />
         <Route path="/pricing" component={Pricing} />
-        <Route path="/teammember" component={Team} />
+        {/* <Route path="/teammember" component={Team} /> */}
         <Route path="/home" component={authenticate(LoadDashboard)} />
-        <Route path="/teamMember" component={TeamDashboard} />
+        <Route path="/teammember" component={TeamDashboard} />
         <Route path="/callback" component={Callback} />
         <Route path="/teamcallback" component={teamCallback} />
         <Route path="/slack-callback" component={SlackCallback} />

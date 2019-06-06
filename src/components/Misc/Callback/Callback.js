@@ -9,16 +9,12 @@ import { setAccessToken, setIdToken, getUserProfile } from "Auth/Auth";
 
 function Callback({ history }) {
   useEffect(() => {
-    // componentDidMount
     setAccessToken();
     setIdToken();
     getUserProfile(() => {
       history.push("/home");
     });
   }, [history]);
-
-  //Customized styling
-
 
   return (
     <div style={style}>

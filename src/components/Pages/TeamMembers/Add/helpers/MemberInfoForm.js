@@ -56,6 +56,7 @@ function MemberInfoForm({ classes, state, updateMember }) {
         value={state.teamMember.email}
         onChange={e => updateMember("email", e.target.value)}
         margin="normal"
+        required
       />
     </>
   );

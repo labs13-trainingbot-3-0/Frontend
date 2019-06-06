@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
+import { nopass } from "../../../../Auth/Auth"
 
 import {
   addTeamMember,
@@ -169,6 +170,7 @@ function Add(props) {
               {teamMember ? "Edit Team Member" : "Add New Team Member"}
             </Typography>
             <Button
+              onClick={nopass}
               state={state}
               className={
                 teamMember ? classes.magicLinkButton : classes.hiddenButton

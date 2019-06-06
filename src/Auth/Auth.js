@@ -1,9 +1,7 @@
 //Libraries
 import auth0 from "auth0-js";
+import { Auth0LockPasswordless } from "auth0-lock";
 import decode from "jwt-decode";
-
-//Config variables
-import { AUTH_CONFIG } from "./auth0-variables";
 
 //History
 import history from "history.js";
@@ -12,17 +10,77 @@ import history from "history.js";
 const ID_TOKEN_KEY = "id_token";
 const ACCESS_TOKEN_KEY = "access_token";
 
+//Config variables
 const auth = new auth0.WebAuth({
-  clientID: AUTH_CONFIG.clientId,
-  domain: AUTH_CONFIG.domain
+  clientID: process.env.REACT_APP_AUTH0_CLIENTID,
+  domain: process.env.REACT_APP_AUTH0_DOMAIN,
+  callbackUrl: process.env.REACT_APP_PROD
 });
+
+//Logs user in with url bounce
+export const loginbounce = () => {
+  auth.authorize({
+    responseType: "token id_token",
+    redirectUri: auth.callbackUrl,
+    scope: "openid email profile"
+  });
+};
+
+// login modal with lock
+var lock = new Auth0LockPasswordless(
+  process.env.REACT_APP_AUTH0_CLIENTID,
+  process.env.REACT_APP_AUTH0_DOMAIN
+);
 
 //Logs user in
 export const login = () => {
   auth.authorize({
     responseType: "token id_token",
-    redirectUri: AUTH_CONFIG.callbackUrl,
+    redirectUri: process.env.REACT_APP_PROD,
     scope: "openid email profile"
+  });
+  lock.show({allowedConnections: ["facebook", "google", "linkedin"]});
+};
+
+export const nopass = () => {
+  var lock = new Auth0LockPasswordless(
+    process.env.REACT_APP_AUTH0_CLIENTID,
+    process.env.REACT_APP_AUTH0_DOMAIN,
+    {
+      passwordlessMethod: "link",
+      responseType: "token id_token",
+      auth: {
+        redirectUrl: process.env.REACT_APP_TEAM_PROD, // If not specified, defaults to the current page
+        params: {
+          scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    }
+  );
+  lock.show({
+    allowedConnections: ["email"],
+    passwordlessMethod: "link"
+  });
+};
+
+export const nopassadmin = args => {
+  var auth0Auth = new Auth0LockPasswordless(
+    process.env.REACT_APP_AUTH0_CLIENTID,
+    process.env.REACT_APP_AUTH0_DOMAIN,
+    {
+      passwordlessMethod: "link",
+      responseType: "token id_token",
+      auth: {
+        redirectUrl: process.env.REACT_APP_PROD, // If not specified, defaults to the current page
+        params: {
+          scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
+        }
+      }
+    }
+  );
+  auth0Auth.passwordless.sendEmail({
+    email: args.email,
+    send: "link"
   });
 };
 

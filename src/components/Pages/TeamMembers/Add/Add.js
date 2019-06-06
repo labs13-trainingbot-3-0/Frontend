@@ -1,11 +1,5 @@
-<<<<<<< HEAD
-import React, { useReducer, useEffect, useState } from "react";
-import { connect } from "react-redux";
-=======
 import React, { useReducer, useEffect, useState } from 'react'
 import { connect } from 'react-redux'
->>>>>>> master
-
 import { nopass } from "../../../../Auth/Auth"
 
 import {
@@ -28,31 +22,18 @@ import phoneNumberTest from './helpers/testPhoneNumber.js'
 import InfoPopup from 'components/UI/InfoPopup/InfoPopup.js'
 import updateNotifications from './helpers/updateNotifications.js'
 
-<<<<<<< HEAD
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import Button from "@material-ui/core/Button";
-import Snackbar from "components/UI/Snackbar/Snackbar";
-=======
 import { withStyles } from '@material-ui/core/styles'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import Snackbar from 'components/UI/Snackbar/Snackbar'
->>>>>>> master
 import {
   styles,
   MainContainer,
   MemberInfoContainer,
   AddTeamMemberTitleContainer
-<<<<<<< HEAD
-} from "./styles.js";
-=======
 } from "./styles.js"
 import Button from "@material-ui/core/Button"
->>>>>>> master
 
 function Add(props) {
   const {
@@ -70,13 +51,8 @@ function Add(props) {
     messages
   } = props
 
-<<<<<<< HEAD
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const [displaySnackbar, setDisplaySnackbar] = useState(false);
-=======
   const [state, dispatch] = useReducer(reducer, initialState)
   const [displaySnackbar, setDisplaySnackbar] = useState(false)
->>>>>>> master
 
   useEffect(() => {
     // CDM
@@ -109,15 +85,9 @@ function Add(props) {
       state.teamMember.job_description &&
       !phoneNumberTest(state.teamMember.phone_number) &&
       state.teamMember.email
-<<<<<<< HEAD
-    );
-    dispatch({ type: "UPDATE_DISABLED", payload });
-  }, [state.teamMember]);
-=======
     )
     dispatch({ type: 'UPDATE_DISABLED', payload })
   }, [state.teamMember])
->>>>>>> master
 
   const updateMember = (key, value) => {
     dispatch({ type: 'UPDATE_MEMBER', key, payload: value })

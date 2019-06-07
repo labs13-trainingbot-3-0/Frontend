@@ -23,11 +23,11 @@ class SimpleTabs extends React.Component {
     value === 0
       ? this.props.setTopTab("overview")
       : value === 1
-      ? this.props.setTopTab("team members")
-      : value === 2
-      ? this.props.setTopTab("training series")
-      : value === 3
-      ? this.props.setTopTab("notifications")
+      ? // ? this.props.setTopTab("team members")
+        // : value === 2
+        // ? this.props.setTopTab("training series")
+        // : value === 3
+        this.props.setTopTab("notifications")
       : this.props.setTopTab("responses");
 
     this.setState({
@@ -52,10 +52,10 @@ class SimpleTabs extends React.Component {
             value={value}
             onChange={this.handleChange}
           >
-            <Tab label="Overview" />
-            <Tab label="Team Members" />
             <Tab label="Training Series" />
-            <Tab label="Notifications" />
+            {/* <Tab label="Team Members" /> */}
+            {/* <Tab label="Training Series" /> */}
+            <Tab label="All Trainings Chronologically" />
             <Tab label="Responses" />
           </TabsStyled>
         </AppBar>

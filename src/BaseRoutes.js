@@ -11,11 +11,7 @@ import LoadDashboard from "components/Pages/Dashboard/Loader/";
 import TeamDashboard from "components/Pages/TeamDashboard/Loader/";
 
 import Callback from "components/Misc/Callback/Callback.js";
-<<<<<<< HEAD
-import teamCallback from "components/Misc/Callback/TeamCallback.js"
-=======
 import teamCallback from "components/Misc/Callback/TeamCallback.js";
->>>>>>> b03646075607d53924ff8320bbfa66c702b1d1cc
 import SlackCallback from "components/Misc/Callback/SlackCallback.js";
 import authenticate from "components/Misc/authenticate/authenticate.js";
 import rootReducer from "store/reducers";

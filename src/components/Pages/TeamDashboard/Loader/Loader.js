@@ -9,7 +9,7 @@ import ReturnToPreviousPageButton from "components/Navigation/ReturnToPreviousPa
 import Snackbar from "components/UI/Snackbar/Snackbar";
 import DashboardTour from "components/UI/Tour/Tour";
 
-import authenticate from "components/Misc/authenticate/authenticate";
+// import authenticate from "components/Misc/authenticate/authenticate";
 
 import { connect } from "react-redux";
 import { getUser } from "store/actions/userActions";

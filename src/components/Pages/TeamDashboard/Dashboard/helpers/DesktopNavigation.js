@@ -52,17 +52,10 @@ class SimpleTabs extends React.Component {
             value={value}
             onChange={this.handleChange}
           >
-<<<<<<< HEAD
-            <Tab label="Overview" />
-            <Tab label="Team Members" />
-            <Tab label="Training Series" />
-            <Tab label="Notifications" />
-=======
             <Tab label="Training Series" />
             {/* <Tab label="Team Members" /> */}
             {/* <Tab label="Training Series" /> */}
             <Tab label="All Trainings Chronologically" />
->>>>>>> b03646075607d53924ff8320bbfa66c702b1d1cc
             <Tab label="Responses" />
           </TabsStyled>
         </AppBar>

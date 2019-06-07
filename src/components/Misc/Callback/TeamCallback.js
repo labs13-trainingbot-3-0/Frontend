@@ -13,7 +13,7 @@ function Callback({ history }) {
     setAccessToken();
     setIdToken();
     getUserProfile(() => {
-      history.push("/teammember");
+      history.push("/home");
     });
   }, [history]);
 

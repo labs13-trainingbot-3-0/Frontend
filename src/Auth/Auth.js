@@ -48,15 +48,9 @@ export const nopass = () => {
     {
       passwordlessMethod: "link",
       responseType: "token id_token",
-      auth: {
-        redirectUrl: process.env.REACT_APP_TEAM_PROD, // If not specified, defaults to the current page
-        params: {
-          scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
-        }
-      }
-    }
-    
-  );
+      redirectUrl: process.env.REACT_APP_TEAM_PROD, // If not specified, defaults to the current page
+      scope: "openid email profile" // Learn about scopes: https://auth0.com/docs/scopes
+      });
   lock.show({
     allowedConnections: ["email"],
     passwordlessMethod: "link"

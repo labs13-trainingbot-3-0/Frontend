@@ -30,6 +30,7 @@ function CardHeader(props) {
               <i className="material-icons">search</i>
             </Fab>
           )}
+          {window.location.pathname !== "/teammember" && 
           <Fab
             data-tour={tour ? tour[1] : ""}
             size="small"
@@ -38,7 +39,7 @@ function CardHeader(props) {
             onClick={() => add()}
           >
             <i className="material-icons">add</i>
-          </Fab>
+          </Fab>}
         </div>
       </div>
       <div>

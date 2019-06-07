@@ -64,7 +64,6 @@ function Dashboard(props) {
                 List={TrainingSeriesOverview}
                 containerTourNum="4"
                 section="Training Series"
-                handleAdd={() => history.push("/home/create-training-series")}
               />
             </SmallColumns>
           </>

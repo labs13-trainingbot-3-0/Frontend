@@ -9,7 +9,6 @@ import Pricing from "components/Pages/LandingPage/Pricing";
 import Team from "components/Pages/LandingPage/Team";
 import LoadDashboard from "components/Pages/Dashboard/Loader/";
 import TeamMemberDashboard from "components/Pages/TeamMemberDashboard/TeamMemberDashboard";
-import Hi from "components/Pages/Hi";
 
 import Callback from "components/Misc/Callback/Callback.js";
 import SlackCallback from "components/Misc/Callback/SlackCallback.js";

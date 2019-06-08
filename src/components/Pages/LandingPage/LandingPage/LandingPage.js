@@ -91,8 +91,8 @@ class LandingPage extends React.Component {
               <MarketingContent>
                 <h3>Manage Your Team. Stress Free.</h3>
                 <p>
-                  With Training Bot, we take the stress out of managing your
-                  employees{"'"} recurring training modules.
+                  {`With Training Bot, we take the stress out of managing your
+                  employees' recurring training modules.`}
                 </p>
               </MarketingContent>
             </MarketingSection>

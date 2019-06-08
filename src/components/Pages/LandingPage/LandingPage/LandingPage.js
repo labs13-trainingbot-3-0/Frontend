@@ -32,6 +32,7 @@ import undrawTask from "img/undraw_personal_text_vkd8.svg";
 
 //Auth
 import { login } from "Auth/Auth";
+import { loginPasswordless } from "Auth/AuthPasswordless";
 
 class LandingPage extends React.Component {
   scrollTo() {
@@ -56,6 +57,7 @@ class LandingPage extends React.Component {
               <NavbarItem href="/team">Team</NavbarItem>
               <NavbarItem href="/pricing">Pricing</NavbarItem>
               <h2 onClick={login}>Sign In</h2>
+              <h2 onClick={loginPasswordless}>Team Member Sign In</h2>
             </NavbarItemsContainer>
           </NavbarContainer>
           {/* JUMBOTRON STYLED SECTION */}

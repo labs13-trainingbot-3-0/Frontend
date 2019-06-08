@@ -31,8 +31,7 @@ import undrawNotify from "img/undraw_notify_88a4.svg";
 import undrawTask from "img/undraw_personal_text_vkd8.svg";
 
 //Auth
-import { login } from "Auth/Auth";
-import { loginPasswordless } from "Auth/AuthPasswordless";
+import { lock } from "Auth/AuthPasswordless";
 
 class LandingPage extends React.Component {
   scrollTo() {
@@ -50,16 +49,17 @@ class LandingPage extends React.Component {
       <>
         <CssBaseline />
         <LandingPageContainer>
+
           {/* NAVIGATION */}
           <NavbarContainer>
             <img src={Logo} alt="A cute, personable robot" />
             <NavbarItemsContainer>
               <NavbarItem href="/team">Team</NavbarItem>
               <NavbarItem href="/pricing">Pricing</NavbarItem>
-              <h2 onClick={login}>Sign In</h2>
-              <h2 onClick={loginPasswordless}>Team Member Sign In</h2>
+              <h2 onClick={() => lock.show()}>Sign In</h2>
             </NavbarItemsContainer>
           </NavbarContainer>
+
           {/* JUMBOTRON STYLED SECTION */}
           <FirstSection>
             <LandingPageContentContainer>
@@ -71,13 +71,14 @@ class LandingPage extends React.Component {
                 clicks.
               </p>
               <LandingPageButtonContainer>
-                <Button onClick={login}>Get Started</Button>
+                <Button onClick={() => lock.show()}>Get Started</Button>
                 <Button variant="outlined" onClick={() => this.scrollTo(500)}>
                   Learn More
                 </Button>
               </LandingPageButtonContainer>
             </LandingPageContentContainer>
           </FirstSection>
+
           {/* MARKETING CONTAINER / UNDRAW PHOTO SECTION */}
           <MarketingContentContainer name="MarketingContent">
             <MarketingSection>
@@ -126,6 +127,7 @@ class LandingPage extends React.Component {
               </MarketingContent>
             </MarketingSection>
           </MarketingContentContainer>
+
           <FirstSection>
             <LandingPageContentContainer>
               <h1>Get Started For Free!</h1>
@@ -135,10 +137,11 @@ class LandingPage extends React.Component {
               </p>
               <LogoImage src={Logo} alt="A cute, personable robot" />
               <GetStartedButton>
-                <Button onClick={login}>Get Started</Button>
+                <Button onClick={()=>lock.show()}>Get Started</Button>
               </GetStartedButton>
             </LandingPageContentContainer>
           </FirstSection>
+          
           <FooterContainer>
             <FooterItemsContainer>
               <a href="/team">Team</a>

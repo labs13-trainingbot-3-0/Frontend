@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 
 import AppBar from 'components/Navigation/AppBar'
-import { lock } from "Auth/AuthPasswordless";
+import { lock } from 'Auth/AuthPasswordless'
 
 class TeamMemberDashboard extends Component {
   state = {
-    auth0Done: false
+    authDone: false,
+    authError: false
   }
 
   componentDidMount() {
@@ -13,18 +15,29 @@ class TeamMemberDashboard extends Component {
   }
 
   setTokens = authResult => {
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('access_token', authResult.accessToken);
+    localStorage.setItem('id_token', authResult.idToken)
+    localStorage.setItem('access_token', authResult.accessToken)
     lock.getUserInfo(authResult.accessToken, this.setProfile)
   }
 
   setProfile = (error, profile) => {
-    localStorage.setItem("Profile", JSON.stringify(profile));
-    this.setState({auth0Done: true})
+    if (error) {
+      this.setState({ authError: true })
+    }
+    if (profile) {
+      localStorage.setItem('Profile', JSON.stringify(profile))
+      this.setState({ authDone: true })
+    }
   }
 
   render() {
-    return this.state.auth0Done ? <AppBar /> : null
+    if (this.state.authError) {
+      return <Redirect to="/" />
+    }
+    if (this.state.authDone) {
+      return <AppBar />
+    }
+    return null
   }
 }
 export default TeamMemberDashboard

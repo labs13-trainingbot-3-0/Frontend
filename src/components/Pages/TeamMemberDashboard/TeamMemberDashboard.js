@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { Redirect } from 'react-router'
 
-import AppBar from 'components/Navigation/AppBar'
 import { lock } from 'Auth/AuthPasswordless'
+
+import AppBar from 'components/Navigation/AppBar'
+import SimpleTabs from './SimpleTabs'
 
 class TeamMemberDashboard extends Component {
   state = {
@@ -35,7 +37,12 @@ class TeamMemberDashboard extends Component {
       return <Redirect to="/" />
     }
     if (this.state.authDone) {
-      return <AppBar />
+      return (
+        <>
+          <AppBar />
+          <SimpleTabs />
+        </>
+      )
     }
     return null
   }

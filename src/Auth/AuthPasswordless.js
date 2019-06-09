@@ -11,5 +11,6 @@ export const lock = new Auth0LockPasswordless(AUTH_CONFIG.clientId, AUTH_CONFIG.
 });
 
 export const logout = () => {
+  localStorage.clear()
   history.push("/");
 };

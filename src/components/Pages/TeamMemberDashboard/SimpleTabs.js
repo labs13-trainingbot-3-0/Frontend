@@ -1,7 +1,12 @@
 import React from 'react'
+
 import AppBar from '@material-ui/core/AppBar'
 import Tabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
+
+import TrainingSeries from './TrainingSeries'
+import AllTrainings from './AllTrainings'
+import Responses from './Responses'
 
 class SimpleTabs extends React.Component {
   state = {
@@ -24,9 +29,9 @@ class SimpleTabs extends React.Component {
             <Tab label="Responses" />
           </Tabs>
         </AppBar>
-        {this.state.value === 0 && <SimpleTabs>Training Series</SimpleTabs>}
-        {this.state.value === 1 && <SimpleTabs>All Trainings</SimpleTabs>}
-        {this.state.value === 2 && <SimpleTabs>Responses</SimpleTabs>}
+        {this.state.value === 0 && <TrainingSeries />}
+        {this.state.value === 1 && <AllTrainings />}
+        {this.state.value === 2 && <Responses />}
       </>
     )
   }

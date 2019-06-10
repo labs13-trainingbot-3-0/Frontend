@@ -19,7 +19,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Logo from "img/training-bot.png";
 
 //AUTH
-import { login, logout } from "../../../Auth/Auth";
+import { lock, logout } from "../../../Auth/AuthPasswordless";
 
 class AppBar extends Component {
   render() {
@@ -35,7 +35,7 @@ class AppBar extends Component {
                 <Link to="/home">Dashboard</Link>
                 <Link to="/pricing">Pricing</Link>
               </NavLinkItems>
-              <p onClick={() => login()}>Login</p>
+              <p onClick={() => lock.show()}>Login</p>
             </>
           ) : (
             <>
@@ -59,7 +59,6 @@ class AppBar extends Component {
               </Link>
               <RightItemsContainer>
                 <Link to="/home/profile">
-                  {" "}
                   <Avatar
                     data-tour="6"
                     src={JSON.parse(localStorage.getItem("Profile")).picture}

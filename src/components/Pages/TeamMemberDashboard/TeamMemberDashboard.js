@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
+
 import { getUser } from 'store/actions/userActions'
 import { getTeamMembers } from 'store/actions/teamMembersActions'
+
 import { lock } from 'Auth/AuthPasswordless'
 
 import AppBar from 'components/Navigation/AppBar'

@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from "react";
+import React, { useReducer, useEffect, useState } from "react";
 import { connect } from "react-redux";
 
 import {
@@ -20,6 +20,7 @@ import Buttons from "./helpers/Buttons.js";
 import phoneNumberTest from "./helpers/testPhoneNumber.js";
 import InfoPopup from "components/UI/InfoPopup/InfoPopup.js";
 import updateNotifications from "./helpers/updateNotifications.js";
+import Snackbar from "components/UI/Snackbar/Snackbar";
 
 import { withStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -44,6 +45,7 @@ function Add(props) {
   } = props;
 
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [displaySnackbar, setDisplaySnackbar] = useState(false)
 
   useEffect(() => {
     // CDM
@@ -74,7 +76,8 @@ function Add(props) {
       state.teamMember.first_name &&
       state.teamMember.last_name &&
       state.teamMember.job_description &&
-      !phoneNumberTest(state.teamMember.phone_number)
+      !phoneNumberTest(state.teamMember.phone_number) && 
+      state.teamMember.email
     );
     dispatch({ type: "UPDATE_DISABLED", payload });
   }, [state.teamMember]);
@@ -102,16 +105,23 @@ function Add(props) {
   const addNewTeamMember = e => {
     e.preventDefault();
     const { teamMember } = state;
-    if (teamMember.manager_id === "") {
-      teamMember.manager_id = null;
+    const isEmailUnique = teamMembers.filter(
+      member => member.email === teamMember.email
+    )
+    if (!isEmailUnique.length) {
+      if (teamMember.manager_id === '') {
+        teamMember.manager_id = null
+      }
+      if (teamMember.mentor_id === '') {
+        teamMember.mentor_id = null
+      }
+      addTeamMember(state.teamMember)
+      dispatch({ type: 'TOGGLE_ROUTING' })
+      dispatch({ type: 'DISPLAY_SNACKBAR', payload: true })
+      history.push("/home"); 
+    } else { 
+      setDisplaySnackbar(true)
     }
-    if (teamMember.mentor_id === "") {
-      teamMember.mentor_id = null;
-    }
-    addTeamMember(state.teamMember);
-    dispatch({ type: "TOGGLE_ROUTING" });
-    dispatch({ type: "DISPLAY_SNACKBAR", payload: true });
-    history.push("/home");
   };
 
   const { classes } = props;
@@ -135,6 +145,12 @@ function Add(props) {
           </p>
         }
       />
+      {displaySnackbar && (
+        <Snackbar
+          message="A team member with this e-mail address already exists."
+          type="delete"
+        />
+      )}
       <form
         className={classes.form}
         onSubmit={e =>

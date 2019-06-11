@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 //Components
 import StripeView from "../../Misc/Stripe/StripeView";
-import { logout } from "Auth/Auth";
+import { logout } from "Auth/AuthPasswordless";
 import Authentication from "../../Misc/authenticate";
 
 //State Management

@@ -8,12 +8,12 @@ import LandingPage from "components/Pages/LandingPage/LandingPage/";
 import Pricing from "components/Pages/LandingPage/Pricing";
 import Team from "components/Pages/LandingPage/Team";
 import LoadDashboard from "components/Pages/Dashboard/Loader/";
-import TeamDashboard from "components/Pages/TeamDashboard/Loader/";
+
+import TeamMemberDashboard from "components/Pages/TeamMemberDashboard/TeamMemberDashboard";
 
 import Callback from "components/Misc/Callback/Callback.js";
 import teamCallback from "components/Misc/Callback/TeamCallback.js";
 import SlackCallback from "components/Misc/Callback/SlackCallback.js";
-import authenticate from "components/Misc/authenticate/authenticate.js";
 import rootReducer from "store/reducers";
 
 import history from "./history.js";
@@ -31,9 +31,10 @@ function Routes() {
       <Router history={history}>
         <Route exact path="/" component={LandingPage} />
         <Route path="/pricing" component={Pricing} />
-        <Route exact path="/team" component={Team} />
-        <Route path="/home" component={authenticate(LoadDashboard)} />
-        <Route path="/teammember" component={TeamDashboard} />
+
+        <Route path="/team" component={Team} />
+        <Route path="/team-member" component={TeamMemberDashboard} />
+        <Route path="/home" component={LoadDashboard} />
         <Route path="/callback" component={Callback} />
         <Route path="/teamcallback" component={teamCallback} />
         <Route path="/slack-callback" component={SlackCallback} />

@@ -2,7 +2,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTrainingSeries } from  'store/actions'
 import Container from '@material-ui/core/Container';
-import ProgressCircle from 'components/UI/Progress/ProgressCircle'
+import SeriesCard from './SeriesCard'
+import ProgressCircle from 'components/UI/Progress/ProgressCircle';
+import './trainingSeries.css'
+
 
 const dummyData = [
   { title:"Hazardous Material Policy", image: 'https://truckerpath.com/uploads/2017/02/HAZMAT.jpg'},
@@ -22,15 +25,18 @@ class TrainingSeries extends React.Component {
       series: [...dummyData]
     })
   }
+
+  openSeries() {
+    
+  }
+
   render() {
     return (
-      <Container maxwidth='false'>
+      <Container maxwidth='lg' className='container' >
         {this.state.series.length > 0 ?
         this.state.series.map((singleSeries, i) => {
           return (
-            <div key={i}>
-              <h3>{singleSeries.title}</h3>
-            </div>
+            <SeriesCard key={i} seriesData={singleSeries} />
           )}):
         <ProgressCircle />}
       </Container>

@@ -26,9 +26,12 @@ class TrainingSeries extends React.Component {
     return (
       <Container maxwidth='false'>
         {this.state.series.length > 0 ?
-        this.state.series.map(singleSeries => {
-          return <h3>{singleSeries.title}</h3>
-        }):
+        this.state.series.map((singleSeries, i) => {
+          return (
+            <div key={i}>
+              <h3>{singleSeries.title}</h3>
+            </div>
+          )}):
         <ProgressCircle />}
       </Container>
     )

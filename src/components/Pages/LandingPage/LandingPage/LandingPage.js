@@ -31,9 +31,14 @@ import undrawNotify from "img/undraw_notify_88a4.svg";
 import undrawTask from "img/undraw_personal_text_vkd8.svg";
 
 //Auth
-import { lock } from "Auth/AuthPasswordless";
+import { lock,logout  } from "Auth/AuthPasswordless";
 
 class LandingPage extends React.Component {
+  
+  componentDidMount() {
+    logout(); // if page is visted while authenticated, cache is cleared
+  }
+
   scrollTo() {
     scroller.scrollTo("MarketingContent", {
       duration: 800,

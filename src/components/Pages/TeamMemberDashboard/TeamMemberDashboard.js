@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
 
 import { getUser } from 'store/actions/userActions'
-import { getTeamMembers } from 'store/actions/teamMembersActions'
 
 import { lock } from 'Auth/AuthPasswordless'
 
@@ -23,7 +22,6 @@ class TeamMemberDashboard extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.authDone !== this.state.authDone) {
       this.props.getUser()
-      this.props.getTeamMembers()
     }
   }
 
@@ -49,10 +47,9 @@ class TeamMemberDashboard extends Component {
     }
     if (
       this.state.authDone &&
-      this.props.userLoaded &&
-      this.props.teamMembersLoaded
+      this.props.userLoaded
     ) {
-      if (this.props.teamMembers.length) {
+      if (this.props.userId === this.props.adminId) {
         return <Redirect to="/home" />
       }
       return (
@@ -68,13 +65,15 @@ class TeamMemberDashboard extends Component {
 
 const mapStateToProps = state => ({
   userLoaded: state.userReducer.doneLoading,
-  teamMembersLoaded: state.teamMembersReducer.status.loadSuccess,
-  teamMembers: state.teamMembersReducer.teamMembers
+  userId:
+    state.userReducer.userProfile.user && state.userReducer.userProfile.user.id,
+  adminId:
+    state.userReducer.userProfile.admin &&
+    state.userReducer.userProfile.admin.user_id
 })
 
 const mapDispatchToProps = dispatch => ({
-  getUser: () => dispatch(getUser()),
-  getTeamMembers: () => dispatch(getTeamMembers())
+  getUser: () => dispatch(getUser())
 })
 
 export default connect(

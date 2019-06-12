@@ -31,8 +31,7 @@ import undrawNotify from "img/undraw_notify_88a4.svg";
 import undrawTask from "img/undraw_personal_text_vkd8.svg";
 
 //Auth
-import { lock } from "Auth/AuthPasswordless";
-import { logout } from "Auth/Auth.js"
+import { lock,logout  } from "Auth/AuthPasswordless";
 
 class LandingPage extends React.Component {
   

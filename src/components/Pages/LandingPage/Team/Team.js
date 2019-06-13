@@ -9,11 +9,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithubSquare } from "@fortawesome/free-brands-svg-icons";
 
 import Logo from "img/training-bot.png";
-import AJ from "img/AJ.png";
-import Gannon from "img/Gannon.png";
-import Nick from "img/Nick.png";
-import Adam from "img/Adam.png";
-import Tom from "img/Tom.png";
+// import AJ from "img/AJ.png";
+// import Gannon from "img/Gannon.png";
+// import Nick from "img/Nick.png";
+// import Adam from "img/Adam.png";
+// import Tom from "img/Tom.png";
+import ben from "img/ben.png";
+import divya from "img/divya.jpeg";
+import joe from "img/joe.jpeg";
+import tom from "img/tom.jpeg";
 
 import { animateScroll as scroll } from "react-scroll";
 
@@ -33,8 +37,7 @@ import {
   ContactContainer,
   FooterContainer,
   FooterItemsContainer,
-  PortfolioLink,
-  AdamsIMG
+  PortfolioLink
 } from "./styles.js";
 
 class Team extends React.Component {
@@ -62,13 +65,13 @@ class Team extends React.Component {
             <Typography variant="h3">The Team</Typography>
             <TeamInfoContainer>
               <TeamMember>
-                <img src={Nick} alt="Nick Cannariato" />
-                <Typography variant="title">Nick Cannariato</Typography>
+                <img src={ben} alt="Ben Chandler" />
+                <Typography variant="title">Ben Chandler</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://github.com/nickcannariato"
+                  href="https://github.com/chandlerben"
                 >
                   Portfolio Site
                 </PortfolioLink>
@@ -77,27 +80,27 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/nickcannariato"
+                    href="https://github.com/chandlerben"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
                   </a>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/nickcannariato/"
+                    href="https://www.linkedin.com/in/chandlerben/"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={Gannon} alt="Gannon Darcy" />
-                <Typography variant="title">Gannon Darcy</Typography>
+                <img src={divya} alt="Divya Nair" />
+                <Typography variant="title">Divya Nair</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="http://gannon.dev"
+                  href="_blank"
                 >
                   Portfolio Site
                 </PortfolioLink>
@@ -106,27 +109,27 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/GannonDetroit"
+                    href="https://github.com/dsnair"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
                   </a>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/gannon-darcy-b8345073/"
+                    href="_blank"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={AJ} alt="Andrew Brush" />
-                <Typography variant="title">Andrew Brush</Typography>
+                <img src={joe} alt="Joe Bugajski" />
+                <Typography variant="title">Joe Bugajski</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="http://ajbrush.com/"
+                  href="_blank"
                 >
                   Portfolio Site
                 </PortfolioLink>
@@ -135,27 +138,27 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/ajb85"
+                    href="https://github.com/JoeBugajski"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
                   </a>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/andrew-brush-58205b122/"
+                    href="_blank"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={Tom} alt="Thomas Hessburg" />
-                <Typography variant="title">Thomas Hessburg</Typography>
+                <img src={tom} alt="Thomas Folbrecht" />
+                <Typography variant="title">Thomas Folbrecht</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://github.com/TomHessburg"
+                  href="_blank"
                 >
                   Portfolio Site
                 </PortfolioLink>
@@ -164,42 +167,14 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/TomHessburg"
+                    href="https://github.com/tfolbrecht"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
                   </a>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/thomas-hessburg-596948180/"
-                  >
-                    <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
-                  </a>
-                </TeamMemberLinks>
-              </TeamMember>
-              <TeamMember>
-                <AdamsIMG src={Adam} alt="Adam McKenney" />
-                <Typography variant="title">Adam McKenney</Typography>
-                <p>Full-Stack Developer</p>
-                <PortfolioLink
-                  target="_blank"
-                  href="https://github.com/DaftBeowulf"
-                >
-                  Portfolio Site
-                </PortfolioLink>
-
-                <TeamMemberLinks>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://github.com/DaftBeowulf"
-                  >
-                    <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
-                  </a>
-                  <a
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/adam-mckenney-04827a35/"
+                    href="https://www.linkedin.com/in/tfolbrecht/"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>

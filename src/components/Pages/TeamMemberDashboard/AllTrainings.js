@@ -11,35 +11,14 @@ import { connect } from "react-redux";
 
 import { getAllResponses } from "store/actions";
 
-import SearchCard from "components/UI/SearchCard/";
-import TeamMembersOverview from "components/Pages/TeamMembers/List/Overview";
-import TeamMembersTab from "components/Pages/TeamMembers/List/Tab";
-import TrainingSeriesOverview from "components/Pages/TrainingSeries/List/Overview";
-import TrainingSeriesTab from "components/Pages/TrainingSeries/List/Tab";
 import NotificationsCard from "components/Pages/Notifications/Card";
 import NotificationsOverview from "components/Pages/TeamMemberDashboard/NotificationsOverview/Overview.js";
-import Responses from "components/Pages/Notifications/Responses";
-import TabNavigation from "../Dashboard/Dashboard/helpers/TabNavigation";
-import DektopNavigation from "../Dashboard/Dashboard/helpers/DesktopNavigation.js";
 
-import {
-  TripleColumn,
-  SmallColumns,
-  Divider,
-  DashWrapper,
-  MobileNav,
-  DesktopNav
-} from "../Dashboard/Dashboard/styles.js";
+import { DashWrapper } from "../Dashboard/Dashboard/styles.js";
 
 function Dashboard(props) {
-  const [topTab, setTopTab] = useState("overview");
   const [newResponses, setNewResponses] = useState([]);
-  const {
-    user_id,
-    history,
-    responses,
-    getAllResponses: responsesFromProps
-  } = props;
+  const { user_id, responses, getAllResponses: responsesFromProps } = props;
 
   useEffect(() => {
     responsesFromProps();

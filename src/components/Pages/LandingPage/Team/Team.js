@@ -87,7 +87,7 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="_blank"
+                    href="https://www.linkedin.com/in/benjaminchandler"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>

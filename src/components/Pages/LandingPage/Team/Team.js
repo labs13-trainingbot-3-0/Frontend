@@ -87,7 +87,7 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.linkedin.com/in/chandlerben/"
+                    href="_blank"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
@@ -116,7 +116,7 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="_blank"
+                    href="https://www.linkedin.com/in/dsnair/"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
@@ -129,7 +129,7 @@ class Team extends React.Component {
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="_blank"
+                  href="https://github.com/JoeBugajski"
                 >
                   Portfolio Site
                 </PortfolioLink>
@@ -145,7 +145,7 @@ class Team extends React.Component {
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="_blank"
+                    href="ttps://www.linkedin.com/in/joseph-bugajski-8a246116a/"
                   >
                     <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
                   </a>
@@ -158,7 +158,7 @@ class Team extends React.Component {
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="_blank"
+                  href="https://tfolbrecht.com"
                 >
                   Portfolio Site
                 </PortfolioLink>

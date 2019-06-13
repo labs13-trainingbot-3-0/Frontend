@@ -19,7 +19,7 @@ export const getUser = () => dispatch => {
   const userData = JSON.parse(localStorage.getItem("Profile"));
   const { email, name } = userData;
   axios
-    .post(`${process.env.REACT_APP_API}/api/auth`, {
+    .post(`${process.env.REACT_APP_API}api/auth`, {
       email,
       name
     })

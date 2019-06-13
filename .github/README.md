@@ -472,7 +472,7 @@ The actions/store setup for this application are fairly standard for react/redux
 
 | ![Divya Nair](https://github.com/dsnair.png) | ![Thomas Folbecht](https://github.com/tfolbrecht.png) | ![Benjamin Chandler](https://github.com/chandlerben.png) | ![Joe Bugajski](https://github.com/JoeBugajski.png)  |
 | --------------------------------------------- | --------------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
-| [@dsnair](https://github.com/dsnair) | [@tfolbrecht](https://github.com/tfolbrecht) | [@chandlerben](https://github.com/chandlerben) | [@JoeBugajski](https://github.com/JoeBugajski) |
+| [@dsnair](https://github.com/dsnair) | [@tfolbrecht](https://github.com/tfolbrecht) | [@chandlerben](https://github.com/chandlerben) | [@JoeBugajski](https://github.com/JoeBugajski) | 
 
 ## License
 

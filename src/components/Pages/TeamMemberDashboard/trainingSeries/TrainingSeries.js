@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getTrainingSeries } from  'store/actions'
+import SeriesGrid from './SeriesGrid';
 import Container from '@material-ui/core/Container';
 import SeriesCard from './SeriesCard'
 import ProgressCircle from 'components/UI/Progress/ProgressCircle';
@@ -27,17 +28,14 @@ class TrainingSeries extends React.Component {
   }
 
   openSeries() {
-    
+
   }
 
   render() {
     return (
-      <Container maxwidth='lg' className='container' >
+      <Container>
         {this.state.series.length > 0 ?
-        this.state.series.map((singleSeries, i) => {
-          return (
-            <SeriesCard key={i} seriesData={singleSeries} />
-          )}):
+        <SeriesGrid seriesData={this.state.series}/>:
         <ProgressCircle />}
       </Container>
     )

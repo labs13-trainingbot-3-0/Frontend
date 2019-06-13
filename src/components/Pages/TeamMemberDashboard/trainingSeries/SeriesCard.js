@@ -7,10 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import './seriesCard.css'
 
 const useStyles = makeStyles({
     card: {
-        width: 345
+        minWidth: 200,
+        maxWidth: 345,
+        margin: 10
     },
     media: {
         height: 140,

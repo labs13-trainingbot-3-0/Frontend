@@ -4,7 +4,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 
-import TrainingSeries from "./TrainingSeries";
+import TrainingSeries from './trainingSeries/TrainingSeries'
 import AllTrainings from "./AllTrainings";
 import Responses from "./Responses";
 

@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { getTrainingSeries } from  'store/actions'
 import SeriesGrid from './SeriesGrid';
+import SeriesModal from './SeriesModal';
 import Container from '@material-ui/core/Container';
-import SeriesCard from './SeriesCard'
 import ProgressCircle from 'components/UI/Progress/ProgressCircle';
 import './trainingSeries.css'
 
@@ -14,11 +14,13 @@ const dummyData = [
   { title: "Vacation and Time Off", image: 'http://www.30aluxuryvacations.com/sites/default/files/styles/homepage_slideshow_big/public/slides/slideshow-chairs.jpg?itok=6sZeBUHM'},
   { title: "Company Computer Policy", image: 'https://images.pond5.com/young-businesswoman-working-computer-office-footage-018091108_prevstill.jpeg'},
   { title: "Your Fidelity 401k", image: 'https://fidelitylogin.org/wp-content/uploads/2018/01/Fidelity-Investments-Login.jpg'}
-]
+];
 
 class TrainingSeries extends React.Component {
   state = {
-    series: []
+    series: [],
+    seriesModal: false,
+    seriesClicked: 1
   }
 
   componentDidMount() {
@@ -27,16 +29,30 @@ class TrainingSeries extends React.Component {
     })
   }
 
-  openSeries() {
+  openSeriesModal() {
+    this.setState({
+      seriesModal: true
+  })}
 
+  closeSeriesModal() {
+    this.setState({
+      seriesModal: false
+    })
   }
 
   render() {
     return (
       <Container>
         {this.state.series.length > 0 ?
-        <SeriesGrid seriesData={this.state.series}/>:
+        <SeriesGrid 
+          openSeries={this.state.openSeriesModal}
+          seriesData={this.state.series}/>:
         <ProgressCircle />}
+        <SeriesModal 
+          seriesId={this.state.seriesClicked}
+          show={this.state.seriesModal}
+          handleClose={this.closeSeriesModal}
+        />
       </Container>
     )
   }

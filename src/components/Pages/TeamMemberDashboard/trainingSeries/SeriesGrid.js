@@ -26,9 +26,9 @@ const useStyles = makeStyles(theme => ({
 export default function TitlebarGridList(props) {
   const classes = useStyles();
   
-  // const clickHandler = () => {
-  //   return props.openSeriesModal()
-  // }
+  const clickHandler = (id) => {
+    props.openSeries(id)
+  }
   
 
   return (
@@ -36,7 +36,9 @@ export default function TitlebarGridList(props) {
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
         {props.seriesData.map(tile => (
-          <GridListTile onClick={()=>props.openSeries()} key={tile.image}>
+          <GridListTile 
+            onClick={()=>props.openSeries()} 
+            key={tile.image}>
             <img src={tile.image} alt={tile.title} />
             <GridListTileBar
               title={tile.title}

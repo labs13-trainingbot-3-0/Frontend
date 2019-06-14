@@ -25,17 +25,21 @@ class TrainingSeries extends React.Component {
 
   componentDidMount() {
     this.setState({
+      ...this.state,
       series: [...dummyData]
     })
   }
 
   openSeriesModal() {
+    console.log(this.state)
     this.setState({
+      ...this.state,
       seriesModal: true
   })}
 
   closeSeriesModal() {
     this.setState({
+      ...this.state,
       seriesModal: false
     })
   }
@@ -45,7 +49,7 @@ class TrainingSeries extends React.Component {
       <Container>
         {this.state.series.length > 0 ?
         <SeriesGrid 
-          openSeries={this.state.openSeriesModal}
+          openSeries={this.openSeriesModal}
           seriesData={this.state.series}/>:
         <ProgressCircle />}
         <SeriesModal 

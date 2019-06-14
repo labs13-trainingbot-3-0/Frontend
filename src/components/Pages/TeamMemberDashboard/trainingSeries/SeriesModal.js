@@ -25,7 +25,7 @@ function SeriesModal(props) {
       <Button
         variant="contained"
         className={classes.button}
-        onClick={() => props.handleClose}
+        onClick={() => props.handleClose()}
       >
         Go Back
       </Button>

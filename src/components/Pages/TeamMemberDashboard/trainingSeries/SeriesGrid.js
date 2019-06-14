@@ -26,9 +26,9 @@ const useStyles = makeStyles(theme => ({
 export default function TitlebarGridList(props) {
   const classes = useStyles();
   
-  const clickHandler = (id) => {
-    props.openSeries(id)
-  }
+  // const clickHandler = (id) => {
+  //   props.openSeries(id)
+  // }
   
 
   return (

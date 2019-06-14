@@ -45,6 +45,7 @@ class TrainingSeries extends React.Component {
 }
 
   closeSeriesModal() {
+    console.log('Hello from closeSeriesModal')
     this.setState({
       ...this.state,
       seriesModal: false

@@ -9,6 +9,8 @@ import { lock } from 'Auth/AuthPasswordless'
 import AppBar from 'components/Navigation/AppBar'
 import SimpleTabs from './SimpleTabs'
 
+import authenticate from "components/Misc/authenticate/teamauthenticate.js";
+
 class TeamMemberDashboard extends Component {
   state = {
     authDone: false,
@@ -78,5 +80,6 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(
   mapStateToProps,
+  { getUser },
   mapDispatchToProps
-)(TeamMemberDashboard)
+)(authenticate(TeamMemberDashboard))

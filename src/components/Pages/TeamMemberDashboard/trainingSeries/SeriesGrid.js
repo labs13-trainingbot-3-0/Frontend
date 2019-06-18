@@ -38,8 +38,8 @@ export default function TitlebarGridList(props) {
         {props.seriesData.map(tile => (
           <GridListTile 
             onClick={()=>props.openSeries()} 
-            key={tile.image}>
-            <img src={tile.image} alt={tile.title} />
+            key={tile.id}>
+            <img src="http://lorempixel.com/400/200/business" alt='random image'/>
             <GridListTileBar
               title={tile.title}
               actionIcon={

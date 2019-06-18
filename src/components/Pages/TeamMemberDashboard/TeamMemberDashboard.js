@@ -61,7 +61,7 @@ class TeamMemberDashboard extends Component {
         </>
       )
     }
-    return null
+    return authenticate
   }
 }
 

@@ -4,6 +4,11 @@ import history from "history.js";
 import logo from "../img/training-bot.png"
 
 var options = {
+  passwordlessMethod: "link", // Sets Lock to use magic link
+  auth: {
+    redirectUrl: process.env.REACT_APP_HOST + "team-member",
+    responseType: 'token id_token'
+  },
   theme: {
     logo: logo,
     primaryColor: '#451476',
@@ -11,11 +16,6 @@ var options = {
   languageDictionary: {
     title: "Training Bot"
   },
-  passwordlessMethod: "link", // Sets Lock to use magic link
-  auth: {
-    redirectUrl: process.env.REACT_APP_HOST + "team-member",
-    responseType: 'token id_token'
-  }
 };
 
 export const lock = new Auth0LockPasswordless(AUTH_CONFIG.clientId, AUTH_CONFIG.domain, options);

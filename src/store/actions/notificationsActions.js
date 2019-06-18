@@ -34,19 +34,6 @@ export const getNotifications = () => dispatch => {
     .catch(err => dispatch({ type: GET_NOTIFICATIONS_FAIL, error: err }));
 };
 
-export const getTeamMemberNotifications = () => dispatch => {
-  dispatch({ type: GET_NOTIFICATIONS_START });
-  axios
-    .get(`${process.env.REACT_APP_API}/api/team-member-notifications/`)
-    .then(res => {
-      dispatch({
-        type: GET_NOTIFICATIONS_SUCCESS,
-        payload: res.data.notifications
-      });
-    })
-    .catch(err => dispatch({ type: GET_NOTIFICATIONS_FAIL, error: err }));
-};
-
 // ADD notification
 export const addNotification = notification => dispatch => {
   dispatch({ type: ADD_NOTIFICATION_START });

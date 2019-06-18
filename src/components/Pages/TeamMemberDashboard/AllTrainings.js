@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { getAllResponses } from "store/actions";
 
-import NotificationsCard from "components/Pages/Notifications/Card";
+import NotificationsCard from "components/Pages/TeamMemberDashboard/NotificationsOverview/TeamMemberNotificationsCard.js";
 import NotificationsOverview from "components/Pages/TeamMemberDashboard/NotificationsOverview/Overview.js";
 
 import { DashWrapper } from "../Dashboard/Dashboard/styles.js";

@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import moment from "moment";
 
-import { getTeamMemberNotifications } from "store/actions";
+import { getNotifications } from "store/actions";
 import history from "history.js";
 
 import { withStyles } from "@material-ui/core/styles";
@@ -23,14 +23,14 @@ function Overview(props) {
   const {
     getFiltered,
     filters,
-    getTeamMemberNotifications,
+    getNotifications,
     notifications,
     classes
   } = props;
 
   useEffect(() => {
-    getTeamMemberNotifications();
-  }, [getTeamMemberNotifications]);
+    getNotifications();
+  }, [getNotifications]);
 
   const displayedLogo = {
     twilio: <TextsmsOutlined />,
@@ -92,5 +92,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getTeamMemberNotifications }
+  { getNotifications }
 )(withStyles(styles)(Overview));

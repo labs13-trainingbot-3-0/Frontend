@@ -21,7 +21,7 @@ import {
 function AddMemberToTrainingSeries(props) {
   const [activeMembers, setActiveMembers] = useState([]); //an array of all IDS of members being added to a series
   const [startDate, setStartDate] = useState(moment().format("YYYY-MM-DD"));
-  const [memberComMethods, setMemberComMethods] = useState([]); //an array of object containing members firat name and last nam, pluswhich communication method is selected
+  const [memberComMethods, setMemberComMethods] = useState([]); //an array of object containing members first name and last name, plus which communication method is selected
 
   // Destructuring to remove useEffect dependency warnings
   const {

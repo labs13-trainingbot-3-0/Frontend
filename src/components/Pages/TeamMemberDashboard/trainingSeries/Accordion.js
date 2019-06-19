@@ -6,6 +6,15 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ProgressCircle from "components/UI/Progress/ProgressCircle";
+import Microlink from "@microlink/react";
+import styled from "styled-components";
+import "./accordion.css";
+
+const CustomMicrolink = styled(Microlink)`
+  font-family: 'Nitti, "Microsoft YaHei", 微软雅黑, monospace';
+  max-width: 100%;
+  border-radius: 0.42857em;
+`;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +49,17 @@ export default function Accordion(props) {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
+                 <div className="container">
                   <Typography>{message.body}</Typography>
+                  {message.link ? (
+                    <CustomMicrolink url={message.link} size="medium" />
+                  ) : (
+                    <CustomMicrolink
+                      url={`https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/training-bot_pl6bji.svg`}
+                      size="small"
+                    />
+                  )}
+                  </div>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             );

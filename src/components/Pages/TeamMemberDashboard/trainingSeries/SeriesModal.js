@@ -2,7 +2,6 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Accordion from "./Accordion";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
 import './seriesModal.css'
 
 const useStyles = makeStyles(theme => ({
@@ -20,6 +19,8 @@ function SeriesModal(props) {
   const showHideClassName = props.show
     ? "modal display-block"
     : "modal display-none";
+
+  
   return (
     <div className={showHideClassName}>
       <Button
@@ -29,7 +30,10 @@ function SeriesModal(props) {
       >
         Go Back
       </Button>
-      <Accordion />
+      <Accordion 
+        messages={props.messages}
+        seriesId={props.seriesId}
+      />
     </div>
   );
 }

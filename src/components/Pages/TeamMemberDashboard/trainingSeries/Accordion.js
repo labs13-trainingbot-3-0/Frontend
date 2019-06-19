@@ -1,29 +1,55 @@
-import React from 'react';
-import {
-  makeStyles
-} from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import ExpansionPanel from "@material-ui/core/ExpansionPanel";
+import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary";
+import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
+import Typography from "@material-ui/core/Typography";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ProgressCircle from "components/UI/Progress/ProgressCircle";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
+    width: "100%"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
-  },
+    fontWeight: theme.typography.fontWeightRegular
+  }
 }));
 
-export default function SimpleExpansionPanel() {
+export default function Accordion(props) {
   const classes = useStyles();
 
-  return ( 
-    <div className = {classes.root} >
-      <ExpansionPanel >
+  return (
+    <div className={classes.root}>
+      {props.messages ? (
+        props.messages
+          .filter(message => {
+            return message.training_series_id === props.seriesId;
+          })
+          .map(message => {
+            return (
+              <ExpansionPanel key={message.id}>
+                <ExpansionPanelSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header"
+                >
+                  <Typography className={classes.heading}>
+                    {message.subject}
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Typography>{message.body}</Typography>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            );
+          })
+      ) : (
+        <ProgressCircle />
+      )}
+
+      {/* <ExpansionPanel >
         <ExpansionPanelSummary 
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -63,7 +89,7 @@ export default function SimpleExpansionPanel() {
             Disabled Expansion Panel 
           </Typography> 
         </ExpansionPanelSummary> 
-      </ExpansionPanel> 
+      </ExpansionPanel>  */}
     </div>
   );
 }

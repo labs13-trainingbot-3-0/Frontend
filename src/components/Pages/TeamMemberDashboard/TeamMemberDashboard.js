@@ -45,13 +45,12 @@ class TeamMemberDashboard extends Component {
     if (this.state.authError) {
       return <Redirect to="/" />
     }
-    if (
-      this.state.authDone &&
-      this.props.userLoaded
-    ) {
-      if (this.props.userId === this.props.adminId) {
+
+    if (this.state.authDone && this.props.userLoaded) {
+      if (this.props.userId === this.props.adminId || this.props.newUserProfile) {
         return <Redirect to="/home" />
       }
+      
       return (
         <>
           <AppBar />
@@ -59,6 +58,7 @@ class TeamMemberDashboard extends Component {
         </>
       )
     }
+
     return null
   }
 }
@@ -69,7 +69,8 @@ const mapStateToProps = state => ({
     state.userReducer.userProfile.user && state.userReducer.userProfile.user.id,
   adminId:
     state.userReducer.userProfile.admin &&
-    state.userReducer.userProfile.admin.user_id
+    state.userReducer.userProfile.admin.user_id,
+  newUserProfile: state.userReducer.userProfile.newUser
 })
 
 const mapDispatchToProps = dispatch => ({

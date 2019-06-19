@@ -1,8 +1,8 @@
 // parent component for app once logged in
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
 import { DashboardContainer } from "./styles.js";
-
 import ProgressCircle from "components/UI/Progress/ProgressCircle";
 import AppBar from "components/Navigation/AppBar/AppBar";
 import ReturnToPreviousPageButton from "components/Navigation/ReturnToPreviousPage";
@@ -10,22 +10,13 @@ import Snackbar from "components/UI/Snackbar/Snackbar";
 import DashboardTour from "components/UI/Tour/Tour";
 
 import authenticate from "components/Misc/authenticate/authenticate";
-
-import { connect } from "react-redux";
-import { getUser } from "store/actions/userActions";
-
 import DashboardRoutes from "../Routes";
 
 function Loader(props) {
   const [displaySnackbar, setDisplaySnackbar] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(true);
-  const { getUser, newUser, location } = props;
+  const { newUser, location } = props;
   const { state } = location;
-
-  useEffect(() => {
-    // componentDidMount (CDM) --> getUser should never be different
-    getUser();
-  }, [getUser]);
 
   useEffect(() => {
     // componentDidUpdate (CDU) --> update when props.newUser changes
@@ -83,5 +74,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUser }
+  null
 )(authenticate(Loader));

@@ -10,7 +10,11 @@ import { DashWrapper } from "../Dashboard/Dashboard/styles.js";
 
 function Dashboard(props) {
   const [newResponses, setNewResponses] = useState([]);
-  const { user_id, responses, getAllResponses: responsesFromProps } = props;
+  const {
+    user_id,
+    notificationsFromAdmin,
+    getAllResponses: responsesFromProps
+  } = props;
 
   useEffect(() => {
     responsesFromProps();
@@ -20,8 +24,8 @@ function Dashboard(props) {
   }, [responsesFromProps]);
 
   useEffect(() => {
-    setNewResponses(responses.filter(r => !r.seen));
-  }, [responses]);
+    setNewResponses(notificationsFromAdmin.filter(r => !r.seen));
+  }, [notificationsFromAdmin]);
 
   return (
     <DashWrapper>
@@ -38,7 +42,7 @@ function Dashboard(props) {
 }
 
 const mapStateToProps = state => ({
-  responses: state.responsesReducer.responses
+  notificationsFromAdmin: state.userReducer.userProfile.notificationsFromAdmin
 });
 
 export default connect(

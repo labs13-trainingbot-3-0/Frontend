@@ -27,7 +27,8 @@ export const styles = {
     fontSize: 16
   },
   sendDate: {
-    fontSize: 13,
+    fontSize: 15,
+    width: "100px",
     textAlign: "right"
   },
   listItemIcon: {

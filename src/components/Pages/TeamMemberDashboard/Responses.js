@@ -59,6 +59,11 @@ class Responses extends React.Component {
             <div key={index}>
               <List>
                 <ListItem>
+                  <ListItemAvatar>
+                    <Avatar>
+                      {item.name[0].toUpperCase()}
+                    </Avatar>
+                  </ListItemAvatar>
                   <ListItemText primary={item.text} secondary={item.date} />
                 </ListItem>
               </List>

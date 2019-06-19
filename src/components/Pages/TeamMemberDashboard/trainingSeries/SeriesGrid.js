@@ -25,21 +25,21 @@ const useStyles = makeStyles(theme => ({
 
 export default function TitlebarGridList(props) {
   const classes = useStyles();
-  
+
   // const clickHandler = (id) => {
   //   props.openSeries(id)
   // }
-  
 
   return (
     <div className={classes.root}>
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
         {props.seriesData.map(tile => (
-          <GridListTile 
-            onClick={()=>props.openSeries()} 
-            key={tile.id}>
-            <img src="http://lorempixel.com/400/200/business" alt='random image'/>
+          <GridListTile onClick={() => props.openSeries(tile.id)} key={tile.id}>
+            <img
+              src="http://lorempixel.com/400/200/business"
+              alt="random business"
+            />
             <GridListTileBar
               title={tile.title}
               actionIcon={

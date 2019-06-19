@@ -55,15 +55,15 @@ class Responses extends React.Component {
             this.state.page * this.state.rowsPerPage,
             this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
           )
-          .map(item => (
-            <>
+          .map((item, index) => (
+            <div key={index}>
               <List>
                 <ListItem>
                   <ListItemText primary={item.text} secondary={item.date} />
                 </ListItem>
               </List>
               <Divider light />
-            </>
+            </div>
           ))}
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}

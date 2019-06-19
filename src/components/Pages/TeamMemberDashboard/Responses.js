@@ -10,6 +10,7 @@ import ListItem from '@material-ui/core/ListItem'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
+import Divider from '@material-ui/core/Divider'
 
 const styles = {
   paper: {
@@ -39,11 +40,14 @@ class Responses extends React.Component {
     return (
       <Paper elevation={2} className={this.props.classes.paper}>
         {messages.map(item => (
-          <List>
-            <ListItem>
-              <ListItemText primary={item.text} secondary={item.date}/>
-            </ListItem>
-          </List>
+          <>
+            <List>
+              <ListItem>
+                <ListItemText primary={item.text} secondary={item.date} />
+              </ListItem>
+            </List>
+            <Divider light />
+          </>
         ))}
       </Paper>
     )

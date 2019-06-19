@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import orderBy from 'lodash/orderBy'
 
+// MUI
 import { withStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
@@ -11,6 +12,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
+import TablePagination from '@material-ui/core/TablePagination'
 
 const styles = {
   paper: {
@@ -22,6 +24,15 @@ const styles = {
 }
 
 class Responses extends React.Component {
+  state = {
+    page: 0,
+    rowsPerPage: 5
+  }
+
+  handleChangePage = (event, newPage) => this.setState({ page: newPage })
+  handleChangeRowsPerPage = event =>
+    this.setState({ rowsPerPage: +event.target.value })
+
   render() {
     const notif = this.props.notifications.map(item => ({
       date: moment(item.send_date).format('MMM Do, YYYY, h:mm a'),
@@ -39,16 +50,30 @@ class Responses extends React.Component {
 
     return (
       <Paper elevation={2} className={this.props.classes.paper}>
-        {messages.map(item => (
-          <>
-            <List>
-              <ListItem>
-                <ListItemText primary={item.text} secondary={item.date} />
-              </ListItem>
-            </List>
-            <Divider light />
-          </>
-        ))}
+        {messages
+          .slice(
+            this.state.page * this.state.rowsPerPage,
+            this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
+          )
+          .map(item => (
+            <>
+              <List>
+                <ListItem>
+                  <ListItemText primary={item.text} secondary={item.date} />
+                </ListItem>
+              </List>
+              <Divider light />
+            </>
+          ))}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPage={this.state.rowsPerPage}
+          page={this.state.page}
+          count={messages.length}
+          onChangePage={this.handleChangePage}
+          onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          component="div"
+        />
       </Paper>
     )
   }

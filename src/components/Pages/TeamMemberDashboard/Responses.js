@@ -5,6 +5,11 @@ import orderBy from 'lodash/orderBy'
 
 import { withStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
+import ListItemText from '@material-ui/core/ListItemText'
 
 const styles = {
   paper: {
@@ -34,9 +39,11 @@ class Responses extends React.Component {
     return (
       <Paper elevation={2} className={this.props.classes.paper}>
         {messages.map(item => (
-          <p>
-            {item.name} | {item.text} | {item.date}
-          </p>
+          <List>
+            <ListItem>
+              <ListItemText primary={item.text} secondary={item.date}/>
+            </ListItem>
+          </List>
         ))}
       </Paper>
     )

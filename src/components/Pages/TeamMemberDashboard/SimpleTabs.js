@@ -12,10 +12,7 @@ import Tab from '@material-ui/core/Tab'
 const styles = {
   tabs: {
     background: 'white',
-    color: 'black',
-    width: '100vw',
-    display: 'flex',
-    justifyContent: 'center'
+    color: 'black'
   }
 }
 
@@ -35,10 +32,11 @@ class SimpleTabs extends React.Component {
       <>
         <AppBar position="static">
           <Tabs
-            indicatorColor="primary"
-            textColor="primary"
             value={this.state.value}
             onChange={this.changeTab}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
             className={this.props.classes.tabs}
           >
             <Tab label="Training Series" />

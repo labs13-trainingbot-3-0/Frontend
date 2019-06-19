@@ -7,6 +7,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ProgressCircle from 'components/UI/Progress/ProgressCircle';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -18,12 +19,35 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SimpleExpansionPanel() {
+export default function Accordion(props) {
   const classes = useStyles();
 
   return ( 
+    
     <div className = {classes.root} >
-      <ExpansionPanel >
+      {props.messages? 
+        props.messages.filter(message => {
+            return message
+          })
+            .map(message => {
+              return <ExpansionPanel >
+                <ExpansionPanelSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  id="panel1a-header">
+                  <Typography className={classes.heading}>
+                    {message.subject}
+                  </Typography>
+                </ExpansionPanelSummary>
+                <ExpansionPanelDetails>
+                  <Typography>
+                    {message.body}
+                  </Typography>
+                </ExpansionPanelDetails>
+              </ExpansionPanel>
+            }) : <ProgressCircle />}
+      
+      {/* <ExpansionPanel >
         <ExpansionPanelSummary 
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
@@ -63,7 +87,7 @@ export default function SimpleExpansionPanel() {
             Disabled Expansion Panel 
           </Typography> 
         </ExpansionPanelSummary> 
-      </ExpansionPanel> 
+      </ExpansionPanel>  */}
     </div>
   );
 }

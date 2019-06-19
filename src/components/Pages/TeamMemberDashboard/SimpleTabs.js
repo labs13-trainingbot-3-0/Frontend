@@ -1,57 +1,55 @@
-import React from "react";
-
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
+import React from 'react'
 
 import TrainingSeries from './trainingSeries/TrainingSeries'
-import AllTrainings from "./AllTrainings";
-import Responses from "./Responses";
+import AllTrainings from './AllTrainings'
+import Responses from './Responses'
 
-// import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Tabs from '@material-ui/core/Tabs'
+import Tab from '@material-ui/core/Tab'
 
-import styled from "styled-components";
+const styles = {
+  tabs: {
+    background: 'white',
+    color: 'black'
+  }
+}
 
 class SimpleTabs extends React.Component {
   state = {
     value: 0
-  };
+  }
 
   changeTab = (event, newValue) => {
     this.setState({
       value: newValue
-    });
-  };
+    })
+  }
 
   render() {
     return (
       <>
         <AppBar position="static">
-          <TabsStyled
-            indicatorColor="primary"
-            textColor="primary"
+          <Tabs
             value={this.state.value}
             onChange={this.changeTab}
+            indicatorColor="primary"
+            textColor="primary"
+            centered
+            className={this.props.classes.tabs}
           >
             <Tab label="Training Series" />
             <Tab label="All Trainings" />
             <Tab label="Responses" />
-          </TabsStyled>
+          </Tabs>
         </AppBar>
         {this.state.value === 0 && <TrainingSeries />}
         {this.state.value === 1 && <AllTrainings />}
         {this.state.value === 2 && <Responses />}
       </>
-    );
+    )
   }
 }
 
-const TabsStyled = styled(Tabs)`
-  background: white;
-  color: black;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-`;
-
-export default SimpleTabs;
+export default withStyles(styles)(SimpleTabs)

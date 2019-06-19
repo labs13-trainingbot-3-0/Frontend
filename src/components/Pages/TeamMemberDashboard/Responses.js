@@ -13,6 +13,7 @@ import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
 import Divider from '@material-ui/core/Divider'
 import TablePagination from '@material-ui/core/TablePagination'
+import Typography from '@material-ui/core/Typography'
 
 const styles = {
   paper: {
@@ -48,7 +49,13 @@ class Responses extends React.Component {
 
     const messages = orderBy([...notif, ...resp], ['date'])
 
-    return (
+    return !messages.length ? (
+      <Paper elevation={2} className={this.props.classes.paper}>
+        <Typography align="center" color="textSecondary">
+          You've had no correspondence with your Admin yet.
+        </Typography>
+      </Paper>
+    ) : (
       <Paper elevation={2} className={this.props.classes.paper}>
         {messages
           .slice(
@@ -60,9 +67,7 @@ class Responses extends React.Component {
               <List>
                 <ListItem>
                   <ListItemAvatar>
-                    <Avatar>
-                      {item.name[0].toUpperCase()}
-                    </Avatar>
+                    <Avatar>{item.name[0].toUpperCase()}</Avatar>
                   </ListItemAvatar>
                   <ListItemText primary={item.text} secondary={item.date} />
                 </ListItem>

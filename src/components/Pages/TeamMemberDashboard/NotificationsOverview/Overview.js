@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import moment from "moment";
 
 import { getNotifications } from "store/actions";
-import history from "history.js";
 
 import { withStyles } from "@material-ui/core/styles";
 import {
@@ -32,6 +31,11 @@ function Overview(props) {
     getNotifications();
   }, [getNotifications]);
 
+  // const handleClick = e => {
+  //   console.log("This was clicked");
+  //   console.log(notifications);
+  // };
+
   const displayedLogo = {
     twilio: <TextsmsOutlined />,
     sendgrid: <EmailOutlined />,
@@ -49,6 +53,8 @@ function Overview(props) {
       {getFiltered(notifications).map(
         ({
           id,
+          body,
+          link,
           first_name,
           last_name,
           send_date,
@@ -64,16 +70,14 @@ function Overview(props) {
             <ListItem
               key={id}
               className={classes.listItem}
-              onClick={() =>
-                history.push(`/home/team-member/${team_member_id}`)
-              }
+              onClick={() => console.log(`${link}`)}
             >
               <ListItemIcon>{displayedLogo[name]}</ListItemIcon>
               <ListItemText
                 primary={`${subject} | ${series}`}
-                secondary={`${first_name} ${last_name}`}
+                secondary={`${body}`}
               />
-              <Typography className={classes.send_date}>
+              <Typography className={classes.sendDate}>
                 {filters.status === "pending" ? "Send Date" : "Sent on"}
                 <br />
                 {formattedSendDate}
@@ -87,7 +91,7 @@ function Overview(props) {
 }
 
 const mapStateToProps = state => ({
-  notifications: state.notificationsReducer.notifications
+  notifications: state.userReducer.userProfile.notificationsFromAdmin
 });
 
 export default connect(

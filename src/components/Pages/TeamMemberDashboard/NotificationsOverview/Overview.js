@@ -75,7 +75,7 @@ function Overview(props) {
               <ListItemIcon>{displayedLogo[name]}</ListItemIcon>
               <ListItemText
                 primary={`${subject} | ${series}`}
-                secondary={`${body}`}
+                secondary={`${body} | ${send_date}`}
               />
               <Typography className={classes.sendDate}>
                 {filters.status === "pending" ? "Send Date" : "Sent on"}

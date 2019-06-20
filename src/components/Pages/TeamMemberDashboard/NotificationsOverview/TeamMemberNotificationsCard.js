@@ -16,7 +16,7 @@ import {
 
 function Card(props) {
   const [serviceFilter] = useState("all");
-  const [statusFilter] = useState("sent");
+  const [statusFilter] = useState("all");
   const [offset, setOffset] = useState(0);
   const [notificationsCount, setNotificationsCount] = useState(0);
 

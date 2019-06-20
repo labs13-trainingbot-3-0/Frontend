@@ -17,6 +17,10 @@ class TeamMemberDashboard extends Component {
 
   componentDidMount() {
     lock.on('authenticated', this.setTokens)
+
+    if (localStorage.getItem('Profile')) {
+      this.setState({ authDone: true })
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {

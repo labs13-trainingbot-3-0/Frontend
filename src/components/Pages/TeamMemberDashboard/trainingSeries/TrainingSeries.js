@@ -26,11 +26,6 @@ class TrainingSeries extends React.Component {
           seriesArr.push(notifs[i].training_series_id);
         }
       }
-      // for (let i = 0; i < notifs.length; i++) {
-      //   seriesArr.indexOf(notifs[i].training_series_id) >= 0
-      //     ? console.log(seriesArr)
-      //     : seriesArr.push(notifs[i].training_series_id);
-      // }
       return seriesArr;
     };
     let mySeries = getSeries();
@@ -46,18 +41,19 @@ class TrainingSeries extends React.Component {
           });
       });
     };
-    let seriesArray = [];
     const getSeriesArray = async () => {
+      let seriesArray = [];
       for (let i = 0; i < mySeries.length; i++) {
         await getSeriesInfo(mySeries[i]).then(res => {
           return seriesArray.push(res.trainingSeries);
         });
       }
+      return seriesArray;
     };
     let finalSeries = await getSeriesArray();
     this.setState({
       ...this.state,
-      trainingSeries: seriesArray
+      trainingSeries: finalSeries
     });
   }
 

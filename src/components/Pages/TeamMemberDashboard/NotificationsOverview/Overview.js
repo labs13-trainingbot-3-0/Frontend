@@ -19,13 +19,7 @@ import TextsmsOutlined from "@material-ui/icons/TextsmsOutlined";
 import EmailOutlined from "@material-ui/icons/EmailOutlined";
 
 function Overview(props) {
-  const {
-    getFiltered,
-    filters,
-    getNotifications,
-    notifications,
-    classes
-  } = props;
+  const { getFiltered, getNotifications, notifications, classes } = props;
 
   useEffect(() => {
     getNotifications();

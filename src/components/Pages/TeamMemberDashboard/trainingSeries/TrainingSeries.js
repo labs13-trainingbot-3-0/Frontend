@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getTrainingSeries } from "store/actions";
 import SeriesGrid from "./SeriesGrid";
 import SeriesModal from "./SeriesModal";
 import Container from "@material-ui/core/Container";
@@ -12,39 +11,69 @@ class TrainingSeries extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      series: [],
       seriesModal: false,
-      seriesClicked: -1
+      seriesClicked: -1,
+      filteredNotifications: []
     };
   }
 
   async componentDidMount() {
-    const mySeries = await axios.get(
-      `${process.env.REACT_APP_API}/api/training-series`
-    );
-    console.log(`Check out this mySeries object: `, mySeries.data);
-    const myMessages = await axios.get(
-      `${process.env.REACT_APP_API}/api/messages`
-    );
-    console.log(`Check out this myMessages object: `, myMessages.data);
+    const getSeries = () => {
+      let notifs = this.props.notifications;
+      let seriesArr = [];
+      for (let i = 0; i < notifs.length; i++) {
+        if (seriesArr.indexOf(notifs[i].training_series_id) < 0) {
+          seriesArr.push(notifs[i].training_series_id);
+        }
+      }
+      return seriesArr;
+    };
+    let mySeries = getSeries();
+    const getSeriesInfo = num => {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`${process.env.REACT_APP_API}/api/training-series/${num}`)
+          .then(response => {
+            return resolve(response.data);
+          })
+          .catch(error => {
+            return reject(error.message);
+          });
+      });
+    };
+    const getSeriesArray = async () => {
+      let seriesArray = [];
+      for (let i = 0; i < mySeries.length; i++) {
+        await getSeriesInfo(mySeries[i]).then(res => {
+          return seriesArray.push(res.trainingSeries);
+        });
+      }
+      return seriesArray;
+    };
+    let finalSeries = await getSeriesArray();
     this.setState({
-      trainingSeries: mySeries.data.trainingSeries,
-      messages: myMessages.data.messages
+      ...this.state,
+      trainingSeries: finalSeries
     });
   }
 
   openSeriesModal = id => {
-    console.log("Check out this series id ", id);
-    console.log(`state = `, this.state);
+    const sortNotifications = () => {
+      let sorted = this.props.notifications.filter(
+        notif => notif.training_series_id === id
+      );
+      return sorted;
+    };
+    let filteredNotifications = sortNotifications();
     this.setState({
       ...this.state,
       seriesModal: true,
-      seriesClicked: id
+      seriesClicked: id,
+      filteredNotifications: filteredNotifications
     });
   };
 
   closeSeriesModal = () => {
-    console.log("Hello from closeSeriesModal");
     this.setState({
       ...this.state,
       seriesModal: false
@@ -63,7 +92,7 @@ class TrainingSeries extends React.Component {
           <ProgressCircle />
         )}
         <SeriesModal
-          messages={this.state.messages}
+          messages={this.state.filteredNotifications}
           seriesId={this.state.seriesClicked}
           show={this.state.seriesModal}
           handleClose={this.closeSeriesModal}
@@ -74,9 +103,9 @@ class TrainingSeries extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  trainingSeries: state.trainingSeriesReducer.trainingSeries
+  notifications: state.userReducer.userProfile.notificationsFromAdmin
 });
 export default connect(
   mapStateToProps,
-  { getTrainingSeries }
+  null
 )(TrainingSeries);

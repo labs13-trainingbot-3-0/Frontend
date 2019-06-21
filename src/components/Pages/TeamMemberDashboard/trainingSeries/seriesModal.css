@@ -3,8 +3,8 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  background: rgba(0, 0, 0, 0.6)
+  height: 100vh;
+  background: rgba(69, 20, 118, 0.6)
 }
 
 .modal-main {

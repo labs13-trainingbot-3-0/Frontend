@@ -35,6 +35,7 @@ export default function TitlebarGridList(props) {
       <GridList cellHeight={180} className={classes.gridList}>
         <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
         {props.seriesData.map(tile => (
+          console.log(tile),
           <GridListTile onClick={() => props.openSeries(tile.id)} key={tile.id}>
             <img
               src="http://lorempixel.com/400/200/business"

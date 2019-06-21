@@ -43,11 +43,13 @@ class Responses extends React.Component {
 
     const resp = this.props.responses.map(item => ({
       date: moment(item.created_at).format('MMM Do, YYYY, h:mm a'),
-      name: item.first_name,
+      name: `${item.first_name} ${item.last_name}`,
       text: `${item.response}`
     }))
 
     const messages = orderBy([...notif, ...resp], ['date'])
+
+    const profile = JSON.parse(localStorage.getItem('Profile'))
 
     return !messages.length ? (
       <Paper elevation={2} className={this.props.classes.paper}>
@@ -66,9 +68,15 @@ class Responses extends React.Component {
             <div key={index}>
               <List>
                 <ListItem>
-                  <ListItemAvatar>
-                    <Avatar>{item.name[0].toUpperCase()}</Avatar>
-                  </ListItemAvatar>
+                  {item.name.toLowerCase() === profile.name.toLowerCase() ? (
+                    <ListItemAvatar>
+                      <Avatar src={profile.picture} alt={profile.name} />
+                    </ListItemAvatar>
+                  ) : (
+                    <ListItemAvatar>
+                      <Avatar>{item.name[0].toUpperCase()}</Avatar>
+                    </ListItemAvatar>
+                  )}
                   <ListItemText primary={item.text} secondary={item.date} />
                 </ListItem>
               </List>

@@ -73,7 +73,6 @@ function Overview(props) {
                 secondary={`${body}`}
               />
               <Typography className={classes.sendDate}>
-                Sent on
                 <br />
                 {formattedSendDate}
               </Typography>

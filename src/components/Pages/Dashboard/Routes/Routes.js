@@ -39,6 +39,17 @@ function Routes(props) {
       />
       <Route
         exact
+        path="/team-member/help"
+        render={renderProps => (
+          <HelpModal
+            {...renderProps}
+            history={props.history}
+            userId={props.user.id}
+          />
+        )}
+      />
+      <Route
+        exact
         path="/home/contact"
         render={renderProps => (
           <ContactModal

@@ -39,13 +39,21 @@ class AppBar extends Component {
             </>
           ) : (
             <>
-              <Link to="/home">
+              <Link onClick="window.location.reload();">
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <NavigationLogo alt="A cute, personable robot" src={Logo} />
                   <HelpOutline
                     onClick={e => {
                       e.preventDefault();
-                      this.props.history.push("/home/help");
+                      if (
+                        window.location.pathname === "/team-member" ||
+                        window.location.pathname === "/team-member/help" ||
+                        window.location.pathname === "/team-member/"
+                      ) {
+                        this.props.history.push("/team-member/help");
+                      } else {
+                        this.props.history.push("/home/help");
+                      }
                     }}
                     style={{
                       color: "black",

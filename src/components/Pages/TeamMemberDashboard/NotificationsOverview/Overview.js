@@ -19,13 +19,7 @@ import TextsmsOutlined from "@material-ui/icons/TextsmsOutlined";
 import EmailOutlined from "@material-ui/icons/EmailOutlined";
 
 function Overview(props) {
-  const {
-    getFiltered,
-    filters,
-    getNotifications,
-    notifications,
-    classes
-  } = props;
+  const { getFiltered, getNotifications, notifications, classes } = props;
 
   useEffect(() => {
     getNotifications();
@@ -66,6 +60,7 @@ function Overview(props) {
           const formattedSendDate = moment(send_date)
             .add(1, "hours")
             .format("MMMM Do");
+
           return (
             <ListItem
               key={id}
@@ -78,7 +73,6 @@ function Overview(props) {
                 secondary={`${body}`}
               />
               <Typography className={classes.sendDate}>
-                {filters.status === "pending" ? "Send Date" : "Sent on"}
                 <br />
                 {formattedSendDate}
               </Typography>

@@ -66,6 +66,7 @@ function Overview(props) {
           const formattedSendDate = moment(send_date)
             .add(1, "hours")
             .format("MMMM Do");
+
           return (
             <ListItem
               key={id}
@@ -75,10 +76,10 @@ function Overview(props) {
               <ListItemIcon>{displayedLogo[name]}</ListItemIcon>
               <ListItemText
                 primary={`${subject} | ${series}`}
-                secondary={`${body} | ${send_date}`}
+                secondary={`${body}`}
               />
               <Typography className={classes.sendDate}>
-                {filters.status === "pending" ? "Send Date" : "Sent on"}
+                Sent on
                 <br />
                 {formattedSendDate}
               </Typography>

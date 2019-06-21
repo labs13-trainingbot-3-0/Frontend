@@ -2,7 +2,7 @@
 import React, { useState, Suspense } from "react";
 import { connect } from "react-redux";
 
-import filter from "../../Notifications/Card/filter.js";
+import filter from "./TeamMemberFilter.js";
 
 import { withStyles } from "@material-ui/core/styles";
 import { Paper, Typography } from "@material-ui/core/";
@@ -16,7 +16,7 @@ import {
 
 function Card(props) {
   const [serviceFilter] = useState("all");
-  const [statusFilter] = useState("all");
+  const [statusFilter] = useState("pending");
   const [offset, setOffset] = useState(0);
   const [notificationsCount, setNotificationsCount] = useState(0);
 

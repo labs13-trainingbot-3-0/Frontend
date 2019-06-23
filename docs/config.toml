@@ -1,0 +1,44 @@
+theme = "docuapi"
+themesdir = "themes/"
+baseurl = "/"
+title = "Training Bot 3 Docs"
+
+# Code higlighting settings
+pygmentsCodefences = true
+pygmentsCodeFencesGuesSsyntax = false
+pygmentsOptions = ""
+pygmentsStyle = "monokai"
+# The monokai stylesheet is included in the base template.
+pygmentsUseClasses = true
+
+defaultContentLanguage = "en"
+
+[params]
+search = true
+  
+# Configure the language example tabs.
+[[params.language_tabs]]
+key = "shell"
+name = "Code" 
+
+#Languages 
+[languages]
+
+[languages.en]
+languageName = "English"
+weight = 2
+title = "Training Bot 3 API"
+
+# Left sidebar footer items. Use HTMl or Markdown.
+toc_footers = []
+[languages.en.blackfriday]
+angledQuotes = false
+hrefTargetBlank = true
+
+# Left sidebar footer items. Use HTMl or Markdown.
+
+
+[languages.nn.blackfriday]
+# Norwegian uses angled quotes
+angledQuotes = true
+hrefTargetBlank = true

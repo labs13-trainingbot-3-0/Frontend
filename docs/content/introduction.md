@@ -7,7 +7,7 @@ title: API Reference
 
 Welcome to the [Training Bot 3 Project](https://github.com/labs13-trainingbot-3-0/). This document will walk you through how to configure, deploy, and interact with the Training Bot 3, and the APIs it consumes.
 
-### [Git Workflow]()
+### Git Workflow
 
 ```shell
 # Lambda School git flow

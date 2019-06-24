@@ -1,42 +1,92 @@
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import React from 'react'
+import { connect } from 'react-redux'
+import moment from 'moment'
+import orderBy from 'lodash/orderBy'
 
-import NotificationsCard from "components/Pages/TeamMemberDashboard/NotificationsOverview/TeamMemberNotificationsCard";
-import NotificationsOverview from "components/Pages/TeamMemberDashboard/NotificationsOverview/Overview";
+// MUI
+import { withStyles } from '@material-ui/styles'
+import Paper from '@material-ui/core/Paper'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemAvatar from '@material-ui/core/ListItemAvatar'
+import Avatar from '@material-ui/core/Avatar'
+import ListItemText from '@material-ui/core/ListItemText'
+import Divider from '@material-ui/core/Divider'
+import TablePagination from '@material-ui/core/TablePagination'
+import Typography from '@material-ui/core/Typography'
 
-import { DashWrapper } from "../Dashboard/Dashboard/styles.js";
+const styles = {
+  paper: {
+    margin: '5px auto',
+    padding: '16px',
+    height: '100%',
+    width: '95%'
+  }
+}
 
-function Dashboard(props) {
-  const [newResponses, setNewResponses] = useState([]);
+class AllTrainings extends React.Component {
+  state = {
+    page: 0,
+    rowsPerPage: 5
+  }
 
-  const {
-    user_id,
-    notificationsFromAdmin
-  } = props;
+  handleChangePage = (event, newPage) => this.setState({ page: newPage })
+  handleChangeRowsPerPage = event =>
+    this.setState({ rowsPerPage: +event.target.value })
 
-  useEffect(() => {
-    setNewResponses(notificationsFromAdmin.filter(r => !r.seen));
-  }, [notificationsFromAdmin]);
-
-  return (
-    <DashWrapper>
-      <div style={{ width: "100%" }}>
-        {user_id}
-        <NotificationsCard
-          List={NotificationsOverview}
-          user_id={user_id}
-          width="95%"
+  render() {
+    return !this.props.notif.length ? (
+      <Paper elevation={2} className={this.props.classes.paper}>
+        <Typography align="center" color="textSecondary">
+          You haven't had a training activity yet.
+        </Typography>
+      </Paper>
+    ) : (
+      <Paper elevation={2} className={this.props.classes.paper}>
+        {this.props.notif
+          .slice(
+            this.state.page * this.state.rowsPerPage,
+            this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
+          )
+          .map((item, index) => (
+            <div key={index}>
+              <List>
+                <ListItem button>
+                  <ListItemAvatar>
+                    <Avatar />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary={`${item.subject} | ${item.series}`}
+                    secondary={item.body}
+                  />
+                  <Typography>
+                    <br />
+                    {moment(item.send_date).format('MMMM Do, YYYY')}
+                  </Typography>
+                </ListItem>
+              </List>
+              <Divider light />
+            </div>
+          ))}
+        <TablePagination
+          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPage={this.state.rowsPerPage}
+          page={this.state.page}
+          count={this.props.notif.length}
+          onChangePage={this.handleChangePage}
+          onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          component="div"
         />
-      </div>
-    </DashWrapper>
-  );
+      </Paper>
+    )
+  }
 }
 
 const mapStateToProps = state => ({
-  notificationsFromAdmin: state.userReducer.userProfile.notificationsFromAdmin
-});
+  notif: state.userReducer.userProfile.notificationsFromAdmin
+})
 
 export default connect(
   mapStateToProps,
   null
-)(Dashboard);
+)(withStyles(styles)(AllTrainings))

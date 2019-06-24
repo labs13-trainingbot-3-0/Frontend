@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { getNotificationResponses } from '../../../store/actions'
+
 import moment from 'moment'
 import orderBy from 'lodash/orderBy'
 
@@ -8,12 +10,18 @@ import { withStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
 import ListItemText from '@material-ui/core/ListItemText'
+import Collapse from '@material-ui/core/Collapse'
 import Divider from '@material-ui/core/Divider'
 import TablePagination from '@material-ui/core/TablePagination'
 import Typography from '@material-ui/core/Typography'
+
+// Icons
+import ExpandLess from '@material-ui/icons/ExpandLess'
+import ExpandMore from '@material-ui/icons/ExpandMore'
 
 const styles = {
   paper: {
@@ -27,12 +35,19 @@ const styles = {
 class AllTrainings extends React.Component {
   state = {
     page: 0,
-    rowsPerPage: 5
+    rowsPerPage: 5,
+    showResponses: false
   }
 
   handleChangePage = (event, newPage) => this.setState({ page: newPage })
+
   handleChangeRowsPerPage = event =>
     this.setState({ rowsPerPage: +event.target.value })
+
+  handleListItemClick = id => {
+    this.props.getNotificationResponses(id)
+    this.setState({ showResponses: !this.state.showResponses })
+  }
 
   render() {
     return !this.props.notif.length ? (
@@ -48,23 +63,42 @@ class AllTrainings extends React.Component {
             this.state.page * this.state.rowsPerPage,
             this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
           )
-          .map((item, index) => (
-            <div key={index}>
+          .map(item => (
+            <div key={item.id}>
               <List>
-                <ListItem button>
-                  <ListItemAvatar>
+                <ListItem
+                  button
+                  onClick={() => this.handleListItemClick(item.id)}
+                >
+                  <ListItemIcon>
                     <Avatar />
-                  </ListItemAvatar>
+                  </ListItemIcon>
                   <ListItemText
                     primary={`${item.subject} | ${item.series}`}
                     secondary={item.body}
                   />
                   <Typography>
-                    <br />
                     {moment(item.send_date).format('MMMM Do, YYYY')}
                   </Typography>
+                  {this.state.showResponses ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
+
+                <Collapse
+                  in={this.state.showResponses}
+                  timeout="auto"
+                  unmountOnExit
+                >
+                  <List component="div" disablePadding>
+                    <ListItem>
+                      {/* <ListItemIcon>
+                        <StarBorder />
+                      </ListItemIcon> */}
+                      <ListItemText primary="Starred" />
+                    </ListItem>
+                  </List>
+                </Collapse>
               </List>
+
               <Divider light />
             </div>
           ))}
@@ -86,7 +120,11 @@ const mapStateToProps = state => ({
   notif: state.userReducer.userProfile.notificationsFromAdmin
 })
 
+const mapDispatchToProps = dispatch => ({
+  getNotificationResponses: id => dispatch(getNotificationResponses(id))
+})
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(withStyles(styles)(AllTrainings))

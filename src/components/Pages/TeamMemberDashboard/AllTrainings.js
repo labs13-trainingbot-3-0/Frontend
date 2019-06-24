@@ -82,7 +82,7 @@ class AllTrainings extends React.Component {
                     primary={`${item.subject} | ${item.series}`}
                     secondary={item.body}
                   />
-                  <Typography>
+                  <Typography color="textSecondary">
                     {moment(item.send_date).format('MMMM Do, YYYY')}
                   </Typography>
                   {this.state.showResponses ? <ExpandLess /> : <ExpandMore />}

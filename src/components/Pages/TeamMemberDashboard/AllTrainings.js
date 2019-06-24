@@ -89,12 +89,20 @@ class AllTrainings extends React.Component {
                   unmountOnExit
                 >
                   <List component="div" disablePadding>
-                    <ListItem>
-                      {/* <ListItemIcon>
+                    {!this.props.resp.length ? (
+                      <Typography align="center" color="textSecondary">
+                        You haven't yet responded to this message.
+                      </Typography>
+                    ) : (
+                      this.props.resp.map(item => (
+                        <ListItem>
+                          {/* <ListItemIcon>
                         <StarBorder />
                       </ListItemIcon> */}
-                      <ListItemText primary="Starred" />
-                    </ListItem>
+                          <ListItemText primary={item.body} />
+                        </ListItem>
+                      ))
+                    )}
                   </List>
                 </Collapse>
               </List>
@@ -117,7 +125,8 @@ class AllTrainings extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  notif: state.userReducer.userProfile.notificationsFromAdmin
+  notif: state.userReducer.userProfile.notificationsFromAdmin,
+  resp: state.responsesReducer.responses
 })
 
 const mapDispatchToProps = dispatch => ({

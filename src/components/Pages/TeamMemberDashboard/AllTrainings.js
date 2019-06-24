@@ -29,6 +29,9 @@ const styles = {
     padding: '16px',
     height: '100%',
     width: '95%'
+  }, 
+  resp: {
+    paddingLeft: '64px'
   }
 }
 
@@ -50,6 +53,8 @@ class AllTrainings extends React.Component {
   }
 
   render() {
+    const profile = JSON.parse(localStorage.getItem('Profile'))
+
     return !this.props.notif.length ? (
       <Paper elevation={2} className={this.props.classes.paper}>
         <Typography align="center" color="textSecondary">
@@ -91,14 +96,23 @@ class AllTrainings extends React.Component {
                   <List component="div" disablePadding>
                     {!this.props.resp.length ? (
                       <Typography align="center" color="textSecondary">
-                        You haven't yet responded to this message.
+                        You haven't responded to this message yet.
                       </Typography>
                     ) : (
                       this.props.resp.map(item => (
-                        <ListItem>
-                          {/* <ListItemIcon>
-                        <StarBorder />
-                      </ListItemIcon> */}
+                        <ListItem className={this.props.classes.resp}>
+                          {item.recipient_id === this.props.member.user.id ? (
+                            <ListItemAvatar>
+                              <Avatar
+                                src={profile.picture}
+                                alt={profile.name}
+                              />
+                            </ListItemAvatar>
+                          ) : (
+                            <ListItemAvatar>
+                              <Avatar>{this.props.member.admin.first_name[0].toUpperCase()}</Avatar>
+                            </ListItemAvatar>
+                          )}
                           <ListItemText primary={item.body} />
                         </ListItem>
                       ))
@@ -126,7 +140,8 @@ class AllTrainings extends React.Component {
 
 const mapStateToProps = state => ({
   notif: state.userReducer.userProfile.notificationsFromAdmin,
-  resp: state.responsesReducer.responses
+  resp: state.responsesReducer.responses,
+  member: state.userReducer.userProfile
 })
 
 const mapDispatchToProps = dispatch => ({

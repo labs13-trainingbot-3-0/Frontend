@@ -1,27 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
-import { getAllResponses } from "store/actions";
-
-import NotificationsCard from "components/Pages/TeamMemberDashboard/NotificationsOverview/TeamMemberNotificationsCard.js";
-import NotificationsOverview from "components/Pages/TeamMemberDashboard/NotificationsOverview/Overview.js";
+import NotificationsCard from "components/Pages/TeamMemberDashboard/NotificationsOverview/TeamMemberNotificationsCard";
+import NotificationsOverview from "components/Pages/TeamMemberDashboard/NotificationsOverview/Overview";
 
 import { DashWrapper } from "../Dashboard/Dashboard/styles.js";
 
 function Dashboard(props) {
   const [newResponses, setNewResponses] = useState([]);
+
   const {
     user_id,
-    notificationsFromAdmin,
-    getAllResponses: responsesFromProps
+    notificationsFromAdmin
   } = props;
-
-  useEffect(() => {
-    responsesFromProps();
-    setTimeout(() => {
-      responsesFromProps();
-    }, 60 * 1000);
-  }, [responsesFromProps]);
 
   useEffect(() => {
     setNewResponses(notificationsFromAdmin.filter(r => !r.seen));
@@ -47,5 +38,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getAllResponses }
+  null
 )(Dashboard);

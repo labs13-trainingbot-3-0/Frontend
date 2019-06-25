@@ -1,8 +1,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getNotificationResponses } from '../../../store/actions'
-
 import moment from 'moment'
+
+import { getNotificationResponses } from '../../../store/actions'
 
 // MUI
 import { withStyles } from '@material-ui/styles'
@@ -33,12 +33,12 @@ const styles = {
     width: '95%'
   },
   resp: {
-    paddingLeft: '64px'
+    paddingLeft: '16px * 4'
   },
   slack: {
     height: '100%',
     width: '50px',
-    margin: '0px -13px'
+    margin: '0px - 13px'
   }
 }
 
@@ -54,7 +54,7 @@ class AllTrainings extends React.Component {
   handleChangeRowsPerPage = event =>
     this.setState({ rowsPerPage: +event.target.value })
 
-  handleListItemClick = id => {
+  handleClickListItem = id => {
     this.props.getNotificationResponses(id)
     this.setState({ showResponses: !this.state.showResponses })
   }
@@ -80,7 +80,7 @@ class AllTrainings extends React.Component {
               <List>
                 <ListItem
                   button
-                  onClick={() => this.handleListItemClick(notif.id)}
+                  onClick={() => this.handleClickListItem(notif.id)}
                 >
                   {notif.name === 'twilio' && (
                     <ListItemIcon>
@@ -108,9 +108,11 @@ class AllTrainings extends React.Component {
                     primary={`${notif.subject} | ${notif.series}`}
                     secondary={notif.body}
                   />
+
                   <Typography color="textSecondary">
                     {moment(notif.send_date).format('MMMM Do, YYYY')}
                   </Typography>
+
                   {this.state.showResponses ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
 

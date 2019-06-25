@@ -24,7 +24,7 @@ const styles = {
     backgroundColor: 'white',
     outline: 'none',
     width: '40%',
-    height: '35vh',
+    minHeight: '35vh',
     margin: '20vh auto',
     padding: '20px'
   }

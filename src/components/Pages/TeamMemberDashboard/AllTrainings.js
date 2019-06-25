@@ -69,7 +69,18 @@ class AllTrainings extends React.Component {
   render() {
     const profile = JSON.parse(localStorage.getItem('Profile'))
 
-    return !this.props.notif.length ? (
+    // show notifications if their send date is in the past
+    const sentNotif = this.props.notifFromAdmin.filter(
+      notif => moment(notif.send_date) < moment()
+    )
+
+    // for pagination
+    const notifByPage = sentNotif.slice(
+      this.state.page * this.state.rowsPerPage,
+      this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
+    )
+
+    return !sentNotif.length ? (
       <Paper elevation={2} className={this.props.classes.paper}>
         <Typography align="center" color="textSecondary">
           You haven't had a training activity yet.
@@ -77,111 +88,103 @@ class AllTrainings extends React.Component {
       </Paper>
     ) : (
       <Paper elevation={2} className={this.props.classes.paper}>
-        {this.props.notif
-          .slice(
-            this.state.page * this.state.rowsPerPage,
-            this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
-          )
-          .map(notif => (
-            <div key={notif.id}>
-              <List>
-                <ListItem
-                  button
-                  onClick={() => this.handleClickListItem(notif.id)}
-                >
-                  {notif.name === 'twilio' && (
-                    <ListItemIcon>
-                      <TextsmsOutlined />
-                    </ListItemIcon>
-                  )}
+        {notifByPage.map(notif => (
+          <div key={notif.id}>
+            <List>
+              <ListItem
+                button
+                onClick={() => this.handleClickListItem(notif.id)}
+              >
+                {notif.name === 'twilio' && (
+                  <ListItemIcon>
+                    <TextsmsOutlined />
+                  </ListItemIcon>
+                )}
 
-                  {notif.name === 'sendgrid' && (
-                    <ListItemIcon>
-                      <EmailOutlined />
-                    </ListItemIcon>
-                  )}
+                {notif.name === 'sendgrid' && (
+                  <ListItemIcon>
+                    <EmailOutlined />
+                  </ListItemIcon>
+                )}
 
-                  {notif.name === 'slack' && (
-                    <ListItemIcon>
-                      <img
-                        className={this.props.classes.slack}
-                        src={slack_black_logo}
-                        alt="monochrome Slack app logo"
+                {notif.name === 'slack' && (
+                  <ListItemIcon>
+                    <img
+                      className={this.props.classes.slack}
+                      src={slack_black_logo}
+                      alt="monochrome Slack app logo"
+                    />
+                  </ListItemIcon>
+                )}
+
+                <ListItemText
+                  primary={`${notif.subject} | ${notif.series}`}
+                  secondary={notif.body}
+                />
+
+                <Typography color="textSecondary">
+                  {moment(notif.send_date).format('MMMM Do, YYYY')}
+                </Typography>
+
+                {this.state.showNotifId === notif.id ? (
+                  <ExpandLess />
+                ) : (
+                  <ExpandMore />
+                )}
+              </ListItem>
+
+              <Collapse
+                in={this.state.showNotifId === notif.id}
+                timeout="auto"
+                unmountOnExit
+              >
+                <List component="div" disablePadding>
+                  {!this.props.resp.length ? (
+                    <ListItem>
+                      <ListItemText
+                        secondary="You haven't responded to this message yet."
+                        className={this.props.classes.respWithoutIcon}
                       />
-                    </ListItemIcon>
-                  )}
-
-                  <ListItemText
-                    primary={`${notif.subject} | ${notif.series}`}
-                    secondary={notif.body}
-                  />
-
-                  <Typography color="textSecondary">
-                    {moment(notif.send_date).format('MMMM Do, YYYY')}
-                  </Typography>
-
-                  {this.state.showNotifId === notif.id ? (
-                    <ExpandLess />
+                    </ListItem>
                   ) : (
-                    <ExpandMore />
-                  )}
-                </ListItem>
-
-                <Collapse
-                  in={this.state.showNotifId === notif.id}
-                  timeout="auto"
-                  unmountOnExit
-                >
-                  <List component="div" disablePadding>
-                    {!this.props.resp.length ? (
-                      <ListItem>
+                    this.props.resp.map(resp => (
+                      <ListItem
+                        key={resp.id}
+                        className={this.props.classes.resp}
+                      >
+                        {resp.recipient_id === this.props.user.id ? (
+                          <ListItemAvatar>
+                            <Avatar src={profile.picture} alt={profile.name} />
+                          </ListItemAvatar>
+                        ) : (
+                          <ListItemAvatar>
+                            <Avatar>
+                              {this.props.admin.first_name[0].toUpperCase()}
+                            </Avatar>
+                          </ListItemAvatar>
+                        )}
                         <ListItemText
-                          secondary="You haven't responded to this message yet."
-                          className={this.props.classes.respWithoutIcon}
+                          primary={resp.body}
+                          secondary={moment(resp.created_at).format(
+                            'MMMM Do, YYYY'
+                          )}
                         />
                       </ListItem>
-                    ) : (
-                      this.props.resp.map(resp => (
-                        <ListItem
-                          key={resp.id}
-                          className={this.props.classes.resp}
-                        >
-                          {resp.recipient_id === this.props.user.id ? (
-                            <ListItemAvatar>
-                              <Avatar
-                                src={profile.picture}
-                                alt={profile.name}
-                              />
-                            </ListItemAvatar>
-                          ) : (
-                            <ListItemAvatar>
-                              <Avatar>
-                                {this.props.admin.first_name[0].toUpperCase()}
-                              </Avatar>
-                            </ListItemAvatar>
-                          )}
-                          <ListItemText
-                            primary={resp.body}
-                            secondary={moment(resp.created_at).format(
-                              'MMMM Do, YYYY'
-                            )}
-                          />
-                        </ListItem>
-                      ))
-                    )}
-                  </List>
-                </Collapse>
-              </List>
+                    ))
+                  )}
+                </List>
+              </Collapse>
+            </List>
 
-              <Divider light />
-            </div>
-          ))}
+            <Divider light />
+          </div>
+        ))}
 
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           rowsPerPage={this.state.rowsPerPage}
           page={this.state.page}
-          count={this.props.notif.length}
+          count={sentNotif.length}
           onChangePage={this.handleChangePage}
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
           component="div"
@@ -192,7 +195,7 @@ class AllTrainings extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  notif: state.userReducer.userProfile.notificationsFromAdmin,
+  notifFromAdmin: state.userReducer.userProfile.notificationsFromAdmin,
   resp: state.responsesReducer.responses,
   user: state.userReducer.userProfile.user,
   admin: state.userReducer.userProfile.admin

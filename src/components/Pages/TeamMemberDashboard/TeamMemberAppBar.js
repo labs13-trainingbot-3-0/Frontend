@@ -26,7 +26,7 @@ class TeamMemberAppBar extends React.Component {
         <Toolbar>
           <Grid container justify="flex-start" alignContent="center">
             <Grid item xs={12} sm={6} md={8} lg={9}>
-              <IconButton aria-label="Home">
+              <IconButton disabled aria-label="Logo">
                 <img
                   src={Logo}
                   alt="A cute, personable robot"

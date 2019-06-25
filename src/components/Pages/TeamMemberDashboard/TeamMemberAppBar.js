@@ -13,6 +13,7 @@ import Avatar from '@material-ui/core/Avatar'
 import HelpOutline from '@material-ui/icons/HelpOutline'
 import Grid from '@material-ui/core/Grid'
 import Modal from '@material-ui/core/Modal'
+import Tooltip from '@material-ui/core/Tooltip'
 import Typography from '@material-ui/core/Typography'
 
 const styles = {
@@ -47,13 +48,15 @@ class TeamMemberAppBar extends React.Component {
                     className={this.props.classes.logo}
                   />
                 </IconButton>
-                <IconButton
-                  onClick={() => this.setState({ openModal: true })}
-                  color="inherit"
-                  aria-label="Help"
-                >
-                  <HelpOutline />
-                </IconButton>
+                <Tooltip title="Help" placement="right">
+                  <IconButton
+                    onClick={() => this.setState({ openModal: true })}
+                    color="inherit"
+                    aria-label="Help"
+                  >
+                    <HelpOutline />
+                  </IconButton>
+                </Tooltip>
               </Grid>
             </Grid>
 

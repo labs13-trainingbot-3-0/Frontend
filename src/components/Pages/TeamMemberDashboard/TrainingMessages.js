@@ -45,7 +45,7 @@ const styles = {
   }
 }
 
-class AllTrainings extends React.Component {
+class TrainingMessages extends React.Component {
   state = {
     page: 0,
     rowsPerPage: 5,
@@ -208,4 +208,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(AllTrainings))
+)(withStyles(styles)(TrainingMessages))

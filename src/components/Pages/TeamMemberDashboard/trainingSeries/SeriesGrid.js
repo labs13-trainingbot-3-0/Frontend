@@ -22,9 +22,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: "flex",
     flexWrap: "wrap",
+    flexDirection: 'row',
     justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper
+    overflow: "hidden"
   },
   gridList: {
     width: 800,
@@ -44,7 +44,11 @@ export default function TitlebarGridList(props) {
 
   return (
     <div className={classes.root}>
-      <GridList cellHeight={180} className={classes.gridList}>
+      <h3>Click on a training series to reveal messages</h3>
+      <GridList 
+        cellHeight={180} 
+        className={classes.gridList}
+        spacing={26}>
         <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
         {props.seriesData.map((tile, i) => (
           console.log(tile),
@@ -68,5 +72,5 @@ export default function TitlebarGridList(props) {
         ))}
       </GridList>
     </div>
-  );
+  )
 }

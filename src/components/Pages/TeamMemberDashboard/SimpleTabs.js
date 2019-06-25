@@ -1,30 +1,31 @@
-import React from 'react'
+import React from "react";
 
-import TrainingSeries from './trainingSeries/TrainingSeries'
-import TrainingMessages from './TrainingMessages'
+import TrainingSeries from "./trainingSeries/TrainingSeries";
+import TrainingMessages from "./TrainingMessages";
 
-import { withStyles } from '@material-ui/core/styles'
-import AppBar from '@material-ui/core/AppBar'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
+import { withStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import { Button } from "@material-ui/core";
 
 const styles = {
   tabs: {
-    background: 'white',
-    color: 'black'
+    background: "white",
+    color: "black"
   }
-}
+};
 
 class SimpleTabs extends React.Component {
   state = {
     value: 0
-  }
+  };
 
   changeTab = (event, newValue) => {
     this.setState({
       value: newValue
-    })
-  }
+    });
+  };
 
   render() {
     return (
@@ -38,15 +39,15 @@ class SimpleTabs extends React.Component {
             centered
             className={this.props.classes.tabs}
           >
-            <Tab label="View Training Topics" />
-            <Tab label="View Training Messages" />
+            <Tab id="data-step-1" label="View Training Topics" />
+            <Tab id="data-step-3" label="View Training Messages" />
           </Tabs>
         </AppBar>
         {this.state.value === 0 && <TrainingSeries />}
         {this.state.value === 1 && <TrainingMessages />}
       </>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(SimpleTabs)
+export default withStyles(styles)(SimpleTabs);

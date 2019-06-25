@@ -41,3 +41,16 @@ export const RightItemsContainer = styled.div`
 export const LogoutStyling = styled.a`
   padding-bottom: 0px;
 `;
+
+
+
+export const styles = theme => ({
+  hiddenButton: {
+    display: "none"
+  },
+  button: {
+    minWidth: 400,
+    border: "none",
+    fontSize: "20px"
+  }
+});

@@ -21,7 +21,7 @@ const styles = {
 class TeamMemberAppBar extends React.Component {
   render() {
     return (
-      <AppBar position="static">
+      <AppBar position="static" color="default">
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="Home">
             <img

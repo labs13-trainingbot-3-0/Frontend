@@ -51,7 +51,6 @@ export default function TitlebarGridList(props) {
         spacing={26}>
         <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
         {props.seriesData.map((tile, i) => (
-          console.log(tile),
           <GridListTile onClick={() => props.openSeries(tile.id)} key={tile.id}>
             <img
               src={stockPhotos[i]}

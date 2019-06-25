@@ -75,26 +75,26 @@ class AllTrainings extends React.Component {
             this.state.page * this.state.rowsPerPage,
             this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
           )
-          .map(item => (
-            <div key={item.id}>
+          .map(notif => (
+            <div key={notif.id}>
               <List>
                 <ListItem
                   button
-                  onClick={() => this.handleListItemClick(item.id)}
+                  onClick={() => this.handleListItemClick(notif.id)}
                 >
-                  {item.name === 'twilio' && (
+                  {notif.name === 'twilio' && (
                     <ListItemIcon>
                       <TextsmsOutlined />
                     </ListItemIcon>
                   )}
 
-                  {item.name === 'sendgrid' && (
+                  {notif.name === 'sendgrid' && (
                     <ListItemIcon>
                       <EmailOutlined />
                     </ListItemIcon>
                   )}
 
-                  {item.name === 'slack' && (
+                  {notif.name === 'slack' && (
                     <ListItemIcon>
                       <img
                         className={this.props.classes.slack}
@@ -105,11 +105,11 @@ class AllTrainings extends React.Component {
                   )}
 
                   <ListItemText
-                    primary={`${item.subject} | ${item.series}`}
-                    secondary={item.body}
+                    primary={`${notif.subject} | ${notif.series}`}
+                    secondary={notif.body}
                   />
                   <Typography color="textSecondary">
-                    {moment(item.send_date).format('MMMM Do, YYYY')}
+                    {moment(notif.send_date).format('MMMM Do, YYYY')}
                   </Typography>
                   {this.state.showResponses ? <ExpandLess /> : <ExpandMore />}
                 </ListItem>
@@ -125,9 +125,12 @@ class AllTrainings extends React.Component {
                         You haven't responded to this message yet.
                       </Typography>
                     ) : (
-                      this.props.resp.map(item => (
-                        <ListItem className={this.props.classes.resp}>
-                          {item.recipient_id === this.props.user.id ? (
+                      this.props.resp.map(resp => (
+                        <ListItem
+                          key={resp.id}
+                          className={this.props.classes.resp}
+                        >
+                          {resp.recipient_id === this.props.user.id ? (
                             <ListItemAvatar>
                               <Avatar
                                 src={profile.picture}
@@ -141,7 +144,7 @@ class AllTrainings extends React.Component {
                               </Avatar>
                             </ListItemAvatar>
                           )}
-                          <ListItemText primary={item.body} />
+                          <ListItemText primary={resp.body} />
                         </ListItem>
                       ))
                     )}

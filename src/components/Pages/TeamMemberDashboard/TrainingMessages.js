@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/styles'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
+import Tooltip from '@material-ui/core/Tooltip'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import Avatar from '@material-ui/core/Avatar'
@@ -96,25 +97,31 @@ class TrainingMessages extends React.Component {
                 onClick={() => this.handleClickListItem(notif.id)}
               >
                 {notif.name === 'twilio' && (
-                  <ListItemIcon>
-                    <TextsmsOutlined />
-                  </ListItemIcon>
+                  <Tooltip title="via Text" placement="top-start">
+                    <ListItemIcon>
+                      <TextsmsOutlined />
+                    </ListItemIcon>
+                  </Tooltip>
                 )}
 
                 {notif.name === 'sendgrid' && (
-                  <ListItemIcon>
-                    <EmailOutlined />
-                  </ListItemIcon>
+                  <Tooltip title="via Email" placement="top-start">
+                    <ListItemIcon>
+                      <EmailOutlined />
+                    </ListItemIcon>
+                  </Tooltip>
                 )}
 
                 {notif.name === 'slack' && (
-                  <ListItemIcon>
-                    <img
-                      className={this.props.classes.slack}
-                      src={slack_black_logo}
-                      alt="monochrome Slack app logo"
-                    />
-                  </ListItemIcon>
+                  <Tooltip title="via Slack" placement="top-start">
+                    <ListItemIcon>
+                      <img
+                        className={this.props.classes.slack}
+                        src={slack_black_logo}
+                        alt="monochrome Slack app logo"
+                      />
+                    </ListItemIcon>
+                  </Tooltip>
                 )}
 
                 <ListItemText

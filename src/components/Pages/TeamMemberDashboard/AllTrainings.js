@@ -35,6 +35,9 @@ const styles = {
   resp: {
     paddingLeft: '64px'
   },
+  respWithoutIcon: {
+    paddingLeft: '60px'
+  },
   slack: {
     height: '100%',
     width: '50px',
@@ -132,8 +135,10 @@ class AllTrainings extends React.Component {
                   <List component="div" disablePadding>
                     {!this.props.resp.length ? (
                       <ListItem>
-                        <ListItemIcon />
-                        <ListItemText secondary="You haven't responded to this message yet." />
+                        <ListItemText
+                          secondary="You haven't responded to this message yet."
+                          className={this.props.classes.respWithoutIcon}
+                        />
                       </ListItem>
                     ) : (
                       this.props.resp.map(resp => (

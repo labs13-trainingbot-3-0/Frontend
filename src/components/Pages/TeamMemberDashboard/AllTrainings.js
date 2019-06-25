@@ -144,7 +144,12 @@ class AllTrainings extends React.Component {
                               </Avatar>
                             </ListItemAvatar>
                           )}
-                          <ListItemText primary={resp.body} />
+                          <ListItemText
+                            primary={resp.body}
+                            secondary={moment(resp.created_at).format(
+                              'MMMM Do, YYYY'
+                            )}
+                          />
                         </ListItem>
                       ))
                     )}

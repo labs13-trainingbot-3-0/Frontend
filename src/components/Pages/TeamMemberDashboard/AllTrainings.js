@@ -33,7 +33,7 @@ const styles = {
     width: '95%'
   },
   resp: {
-    paddingLeft: '16px * 4'
+    paddingLeft: '64px'
   },
   slack: {
     height: '100%',
@@ -46,7 +46,7 @@ class AllTrainings extends React.Component {
   state = {
     page: 0,
     rowsPerPage: 5,
-    showResponses: false
+    showNotifId: ''
   }
 
   handleChangePage = (event, newPage) => this.setState({ page: newPage })
@@ -56,7 +56,11 @@ class AllTrainings extends React.Component {
 
   handleClickListItem = id => {
     this.props.getNotificationResponses(id)
-    this.setState({ showResponses: !this.state.showResponses })
+    if (this.state.showNotifId === id) {
+      this.setState({ showNotifId: '' })
+      return
+    }
+    this.setState({ showNotifId: id })
   }
 
   render() {
@@ -113,19 +117,24 @@ class AllTrainings extends React.Component {
                     {moment(notif.send_date).format('MMMM Do, YYYY')}
                   </Typography>
 
-                  {this.state.showResponses ? <ExpandLess /> : <ExpandMore />}
+                  {this.state.showNotifId === notif.id ? (
+                    <ExpandLess />
+                  ) : (
+                    <ExpandMore />
+                  )}
                 </ListItem>
 
                 <Collapse
-                  in={this.state.showResponses}
+                  in={this.state.showNotifId === notif.id}
                   timeout="auto"
                   unmountOnExit
                 >
                   <List component="div" disablePadding>
                     {!this.props.resp.length ? (
-                      <Typography align="center" color="textSecondary">
-                        You haven't responded to this message yet.
-                      </Typography>
+                      <ListItem>
+                        <ListItemIcon />
+                        <ListItemText secondary="You haven't responded to this message yet." />
+                      </ListItem>
                     ) : (
                       this.props.resp.map(resp => (
                         <ListItem

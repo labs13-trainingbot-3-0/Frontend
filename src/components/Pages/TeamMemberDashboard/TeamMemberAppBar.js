@@ -23,9 +23,10 @@ const styles = {
   modal: {
     backgroundColor: 'white',
     outline: 'none',
-    width: '50%',
-    height: '50vh',
-    margin: '20vh auto'
+    width: '40%',
+    height: '35vh',
+    margin: '20vh auto',
+    padding: '20px'
   }
 }
 
@@ -80,9 +81,34 @@ class TeamMemberAppBar extends React.Component {
           open={this.state.openModal}
           onClose={() => this.setState({ openModal: false })}
         >
-          <Typography className={this.props.classes.modal}>
-            Text in a modal
-          </Typography>
+          <div className={this.props.classes.modal}>
+            <Typography variant="h5" align="center" gutterBottom>
+              Welcome to Training Bot!
+            </Typography>
+            <Typography paragraph>
+              Congrats on your new job! Training Bot will assist you step-by-step as you onboard
+              onto your new team.
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              View Training Topics
+            </Typography>
+            <Typography paragraph>
+              Under 'View Training Topics', you will find a quick overview of
+              the activities, organized by topics, that you must complete during
+              your onboarding period.
+            </Typography>
+            <Typography variant="h6" gutterBottom>
+              View Training Messages
+            </Typography>
+            <Typography paragraph>
+              Under 'View Training Messages', you will find all conversations
+              (via E-mail, SMS or Slack) between you and your Admin. These
+              conversations contain your Admin's messages to you regarding
+              training activities you are expected to complete as part of your
+              onboarding process. They will also contain your responses, if any,
+              to those messages.
+            </Typography>
+          </div>
         </Modal>
       </>
     )

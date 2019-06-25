@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { getNotificationResponses } from '../../../store/actions'
 
 import moment from 'moment'
-import orderBy from 'lodash/orderBy'
 
 // MUI
 import { withStyles } from '@material-ui/styles'
@@ -22,6 +21,9 @@ import Typography from '@material-ui/core/Typography'
 // Icons
 import ExpandLess from '@material-ui/icons/ExpandLess'
 import ExpandMore from '@material-ui/icons/ExpandMore'
+import TextsmsOutlined from '@material-ui/icons/TextsmsOutlined'
+import EmailOutlined from '@material-ui/icons/EmailOutlined'
+import slack_black_logo from 'img/slack_black_logo.png'
 
 const styles = {
   paper: {
@@ -29,9 +31,14 @@ const styles = {
     padding: '16px',
     height: '100%',
     width: '95%'
-  }, 
+  },
   resp: {
     paddingLeft: '64px'
+  },
+  slack: {
+    height: '100%',
+    width: '50px',
+    margin: '0px -13px'
   }
 }
 
@@ -75,9 +82,28 @@ class AllTrainings extends React.Component {
                   button
                   onClick={() => this.handleListItemClick(item.id)}
                 >
-                  <ListItemIcon>
-                    <Avatar />
-                  </ListItemIcon>
+                  {item.name === 'twilio' && (
+                    <ListItemIcon>
+                      <TextsmsOutlined />
+                    </ListItemIcon>
+                  )}
+
+                  {item.name === 'sendgrid' && (
+                    <ListItemIcon>
+                      <EmailOutlined />
+                    </ListItemIcon>
+                  )}
+
+                  {item.name === 'slack' && (
+                    <ListItemIcon>
+                      <img
+                        className={this.props.classes.slack}
+                        src={slack_black_logo}
+                        alt="monochrome Slack app logo"
+                      />
+                    </ListItemIcon>
+                  )}
+
                   <ListItemText
                     primary={`${item.subject} | ${item.series}`}
                     secondary={item.body}
@@ -101,7 +127,7 @@ class AllTrainings extends React.Component {
                     ) : (
                       this.props.resp.map(item => (
                         <ListItem className={this.props.classes.resp}>
-                          {item.recipient_id === this.props.member.user.id ? (
+                          {item.recipient_id === this.props.user.id ? (
                             <ListItemAvatar>
                               <Avatar
                                 src={profile.picture}
@@ -110,7 +136,9 @@ class AllTrainings extends React.Component {
                             </ListItemAvatar>
                           ) : (
                             <ListItemAvatar>
-                              <Avatar>{this.props.member.admin.first_name[0].toUpperCase()}</Avatar>
+                              <Avatar>
+                                {this.props.admin.first_name[0].toUpperCase()}
+                              </Avatar>
                             </ListItemAvatar>
                           )}
                           <ListItemText primary={item.body} />
@@ -124,6 +152,7 @@ class AllTrainings extends React.Component {
               <Divider light />
             </div>
           ))}
+
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           rowsPerPage={this.state.rowsPerPage}
@@ -141,7 +170,8 @@ class AllTrainings extends React.Component {
 const mapStateToProps = state => ({
   notif: state.userReducer.userProfile.notificationsFromAdmin,
   resp: state.responsesReducer.responses,
-  member: state.userReducer.userProfile
+  user: state.userReducer.userProfile.user,
+  admin: state.userReducer.userProfile.admin
 })
 
 const mapDispatchToProps = dispatch => ({

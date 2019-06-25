@@ -32,18 +32,10 @@ const responsesReducer = (state = initialState, action) => {
         error: ""
       };
     case GET_RESPONSES_SUCCESS:
-      // Temp code for presentation
-      const newResponses = action.payload.filter(
-        newRes => !state.responses.find(oldRes => oldRes.id === newRes.id)
-      );
-      const addResponses = newResponses.map(newRes => ({
-        ...newRes,
-        seen: false
-      }));
       return {
         ...state,
         isLoading: false,
-        responses: [...state.responses, ...addResponses]
+        responses: action.payload
       };
     case GET_RESPONSES_FAIL:
       return {

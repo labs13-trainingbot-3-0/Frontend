@@ -1,8 +1,7 @@
 import React from 'react'
 
 import TrainingSeries from './trainingSeries/TrainingSeries'
-import AllTrainings from './AllTrainings'
-import Responses from './Responses'
+import TrainingMessages from './TrainingMessages'
 
 import { withStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
@@ -39,14 +38,12 @@ class SimpleTabs extends React.Component {
             centered
             className={this.props.classes.tabs}
           >
-            <Tab label="Training Series" />
-            <Tab label="All Trainings" />
-            <Tab label="Responses" />
+            <Tab label="View Training Topics" />
+            <Tab label="View Training Messages" />
           </Tabs>
         </AppBar>
         {this.state.value === 0 && <TrainingSeries />}
-        {this.state.value === 1 && <AllTrainings />}
-        {this.state.value === 2 && <Responses />}
+        {this.state.value === 1 && <TrainingMessages />}
       </>
     )
   }

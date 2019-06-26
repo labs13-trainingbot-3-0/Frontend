@@ -44,18 +44,6 @@ class CreateTrainingSeries extends React.Component {
     this.props.history.push("/home");
   };
 
-  // specify upload params and url for your image file
-  getUploadParams = ({ meta }) => { return { url: 'https://api.cloudinary.com/v1_1/trainingbot3/image/upload' } }
-
-  // called every time image file's `status` changes
-  handleChangeStatus = ({ meta, file }, status) => { console.log(status, meta, file) }
-
-  // receives array of files that are done uploading when submit button is clicked
-  handleSubmit = (files, allFiles) => {
-    console.log(files.map(f => f.meta))
-    allFiles.forEach(f => f.remove())
-  }
-
   render() {
     const { classes } = this.props;
     return this.state.isRouting ? (
@@ -91,26 +79,20 @@ class CreateTrainingSeries extends React.Component {
               margin="normal"
               required
             />
-              {/* <Dropzone
-                getUploadParams={this.getUploadParams}
-                onChangeStatus={this.handleChangeStatus}
-                onSubmit={this.handleSubmit}
-                accept="image/*"
-              /> */}
-              <TextField
-                id="standard-name"
-                label="Image Link"
-                className={classes.textField}
-                value={this.state.image}
-                onChange={this.handleChange("image")}
-                margin="normal"
-                required
-              />
-              <img 
-                src={this.state.image}
-                alt='training series cover'
-                label='Image Preview'
-              />
+            <TextField
+              id="standard-name"
+              label="Image Link"
+              className={classes.textField}
+              value={this.state.image}
+              onChange={this.handleChange("image")}
+              margin="normal"
+              required
+            />
+            {/* <img 
+              src={this.state.image}
+              alt='training series cover'
+              label='Image Preview'
+            /> */}
             <div>
               <Button
                 type="submit"

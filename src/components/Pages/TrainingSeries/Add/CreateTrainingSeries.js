@@ -8,7 +8,6 @@ import ProgressCircle from "components/UI/Progress/ProgressCircle";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Button, TextField, Divider } from "@material-ui/core/";
 import { styles, MainContainer } from "./CreateTrainingSeriesStyles.js";
-import 'react-dropzone-uploader/dist/styles.css';
 import InfoPopup from "components/UI/InfoPopup/InfoPopup.js";
 
 class CreateTrainingSeries extends React.Component {
@@ -87,7 +86,7 @@ class CreateTrainingSeries extends React.Component {
               value={this.state.image}
               onChange={this.handleChange("image")}
               margin="normal"
-              // required
+              required
             />
             {/* <img 
               src={this.state.image}

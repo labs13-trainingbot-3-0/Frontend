@@ -6,7 +6,7 @@ import { getUser } from 'store/actions/userActions'
 
 import { lock } from 'Auth/AuthPasswordless'
 
-import AppBar from 'components/Navigation/AppBar'
+import TeamMemberAppBar from './TeamMemberAppBar'
 import SimpleTabs from './SimpleTabs'
 
 class TeamMemberDashboard extends Component {
@@ -57,7 +57,7 @@ class TeamMemberDashboard extends Component {
       
       return (
         <>
-          <AppBar />
+          <TeamMemberAppBar />
           <SimpleTabs />
         </>
       )

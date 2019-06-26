@@ -11,12 +11,15 @@ import DashboardTour from "components/UI/Tour/Tour";
 
 import authenticate from "components/Misc/authenticate/authenticate";
 import DashboardRoutes from "../Routes";
+import { getUser } from "store/actions/userActions"
 
 function Loader(props) {
   const [displaySnackbar, setDisplaySnackbar] = useState(false);
   const [isTourOpen, setIsTourOpen] = useState(true);
-  const { newUser, location } = props;
+  const { getUser, newUser, location } = props;
   const { state } = location;
+
+  useEffect(() => getUser(), [getUser])
 
   useEffect(() => {
     // componentDidUpdate (CDU) --> update when props.newUser changes
@@ -72,7 +75,11 @@ const mapStateToProps = state => ({
   newUser: state.userReducer.newUser
 });
 
+const mapDispatchToProps = dispatch => ({
+  getUser: () => dispatch(getUser())
+});
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(authenticate(Loader));

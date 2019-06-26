@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 
 import { addTrainingSeries } from "store/actions/trainingSeriesActions";
 import ProgressCircle from "components/UI/Progress/ProgressCircle";
-
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Button, TextField, Divider } from "@material-ui/core/";
+import { cloudinary } from “cloudinary-core”; 
 import { styles, MainContainer } from "./CreateTrainingSeriesStyles.js";
-import 'react-dropzone-uploader/dist/styles.css';
-import Dropzone from 'react-dropzone-uploader';
+
 import InfoPopup from "components/UI/InfoPopup/InfoPopup.js";
 
 class CreateTrainingSeries extends React.Component {
@@ -93,13 +93,14 @@ class CreateTrainingSeries extends React.Component {
               margin="normal"
               required
             />
+              <Image cloudName="trainingbot3" uploadPreset='ex0bvuxq' publicId="joe_tno9yw"width="300" crop="scale" />
               {/* <Dropzone
                 getUploadParams={this.getUploadParams}
                 onChangeStatus={this.handleChangeStatus}
                 onSubmit={this.handleSubmit}
                 accept="image/*"
               /> */}
-              <TextField
+              {/* <TextField
                 id="standard-name"
                 label="Image Link"
                 className={classes.textField}
@@ -112,7 +113,7 @@ class CreateTrainingSeries extends React.Component {
                 src={this.state.image}
                 alt='training series cover'
                 label='Image Preview'
-              />
+              /> */}
             <div>
               <Button
                 type="submit"

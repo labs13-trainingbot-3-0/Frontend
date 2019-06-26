@@ -8,8 +8,6 @@ import ProgressCircle from "components/UI/Progress/ProgressCircle";
 import { withStyles } from "@material-ui/core/styles";
 import { Typography, Button, TextField, Divider } from "@material-ui/core/";
 import { styles, MainContainer } from "./CreateTrainingSeriesStyles.js";
-import 'react-dropzone-uploader/dist/styles.css';
-import Dropzone from 'react-dropzone-uploader';
 import InfoPopup from "components/UI/InfoPopup/InfoPopup.js";
 
 class CreateTrainingSeries extends React.Component {

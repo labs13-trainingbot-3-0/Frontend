@@ -6,15 +6,16 @@ import { getNotificationResponses } from '../../../store/actions'
 
 // MUI
 import { withStyles } from '@material-ui/styles'
-import Paper from '@material-ui/core/Paper'
+import Avatar from '@material-ui/core/Avatar'
+import Collapse from '@material-ui/core/Collapse'
+import Divider from '@material-ui/core/Divider'
+import Grid from '@material-ui/core/Grid'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemAvatar from '@material-ui/core/ListItemAvatar'
 import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
-import Collapse from '@material-ui/core/Collapse'
-import Divider from '@material-ui/core/Divider'
+import Paper from '@material-ui/core/Paper'
 import TablePagination from '@material-ui/core/TablePagination'
 import Typography from '@material-ui/core/Typography'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -124,15 +125,26 @@ class TrainingMessages extends React.Component {
                   </Tooltip>
                 )}
 
-                <ListItemText
-                  primary={`${notif.subject} | ${notif.series}`}
-                  secondary={notif.body}
-                />
+                <Grid
+                  container
+                  alignItems="center"
+                  alignContent="center"
+                  justify="space-between"
+                >
+                  <Grid item sm={12} md={9}>
+                    <ListItemText
+                      primary={`${notif.subject} | ${notif.series}`}
+                      secondary={notif.body}
+                    />
+                  </Grid>
 
-                <Typography color="textSecondary">
-                  {moment(notif.send_date).format('MMMM Do, YYYY')}
-                </Typography>
-
+                  <Grid item sm="auto" md="auto">
+                    <Typography color="textSecondary">
+                      {moment(notif.send_date).format('MMMM Do, YYYY')}
+                    </Typography>
+                  </Grid>
+                </Grid>
+                
                 {this.state.showNotifId === notif.id ? (
                   <ExpandLess />
                 ) : (

@@ -44,6 +44,17 @@ export const styles = theme => ({
   },
   divider: {
     margin: "15px 0"
+  },
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
   }
 });
 

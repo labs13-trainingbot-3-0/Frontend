@@ -1,49 +1,54 @@
-import React from "react";
+import React from 'react'
 
-import { logout } from "../../../Auth/AuthPasswordless";
-import Logo from "img/training-bot.png";
-import introJs from "intro.js";
-import "intro.js/introjs.css";
+import { logout } from '../../../Auth/AuthPasswordless'
+import Logo from 'img/training-bot.png'
+import introJs from 'intro.js'
+import 'intro.js/introjs.css'
 
 // MUI
-import { withStyles } from "@material-ui/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
-import Avatar from "@material-ui/core/Avatar";
-import HelpOutline from "@material-ui/icons/HelpOutline";
-import Grid from "@material-ui/core/Grid";
-import Modal from "@material-ui/core/Modal";
-import Tooltip from "@material-ui/core/Tooltip";
-import Typography from "@material-ui/core/Typography";
+import { withStyles } from '@material-ui/styles'
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import Avatar from '@material-ui/core/Avatar'
+import HelpOutline from '@material-ui/icons/HelpOutline'
+import Grid from '@material-ui/core/Grid'
+import Modal from '@material-ui/core/Modal'
+import Tooltip from '@material-ui/core/Tooltip'
+import Typography from '@material-ui/core/Typography'
 
 const styles = {
   logo: {
-    height: "35px"
+    height: '35px'
   },
   modal: {
-    backgroundColor: "white",
-    outline: "none",
-    width: "40%",
-    minHeight: "35vh",
-    margin: "20vh auto",
-    padding: "20px"
+    backgroundColor: 'white',
+    outline: 'none',
+    width: '40%',
+    minHeight: '35vh',
+    margin: '20vh auto',
+    padding: '20px'
   }
-};
+}
 
 class TeamMemberAppBar extends React.Component {
   state = {
     openModal: false
-  };
+  }
 
   render() {
     return (
       <>
         <AppBar position="static" color="default">
           <Toolbar>
-            <Grid container justify="flex-start" alignContent="center">
-              <Grid item xs={12} sm={6} md={8} lg={9}>
+            <Grid
+              container
+              justify="flex-start"
+              alignContent="center"
+              alignItems="center"
+            >
+              <Grid item xs={2} sm={2} md={2} lg={1}>
                 <IconButton disabled aria-label="Logo">
                   <img
                     src={Logo}
@@ -51,6 +56,9 @@ class TeamMemberAppBar extends React.Component {
                     className={this.props.classes.logo}
                   />
                 </IconButton>
+              </Grid>
+
+              <Grid item xs={2} sm={2} md={2} lg={1}>
                 <Tooltip title="Help" placement="right">
                   <IconButton
                     onClick={() => this.setState({ openModal: true })}
@@ -60,11 +68,14 @@ class TeamMemberAppBar extends React.Component {
                     <HelpOutline />
                   </IconButton>
                 </Tooltip>
+              </Grid>
+
+              <Grid item xs="auto" sm="auto" md="auto" lg="auto">
                 <Button
                   variant="contained"
                   onClick={e => {
-                    e.preventDefault();
-                    startIntro();
+                    e.preventDefault()
+                    startIntro()
                   }}
                 >
                   Show Tutorial
@@ -73,13 +84,14 @@ class TeamMemberAppBar extends React.Component {
             </Grid>
 
             <Grid container justify="flex-end" alignContent="center">
-              <Grid item xs={4} sm={3} md={2} lg={1}>
+              <Grid item xs={3} sm={3} md={2} lg={1}>
                 <Avatar
-                  src={JSON.parse(localStorage.getItem("Profile")).picture}
-                  alt={JSON.parse(localStorage.getItem("Profile")).name}
+                  src={JSON.parse(localStorage.getItem('Profile')).picture}
+                  alt={JSON.parse(localStorage.getItem('Profile')).name}
                 />
               </Grid>
-              <Grid item xs={8} sm={3} md={2} lg={2}>
+
+              <Grid item xs={6} sm={3} md={2} lg={2}>
                 <Button onClick={() => logout()} variant="outlined">
                   Logout
                 </Button>
@@ -122,47 +134,47 @@ class TeamMemberAppBar extends React.Component {
           </div>
         </Modal>
       </>
-    );
+    )
   }
 }
 
 function startIntro() {
-  var intro = introJs();
+  var intro = introJs()
   intro.setOptions({
     steps: [
       {
         intro:
-          "Welcome to your Training Bot Dashboard!  This tutorial will walk you through the basics of where and how your training materials are stored."
+          'Welcome to your Training Bot Dashboard!  This tutorial will walk you through the basics of where and how your training materials are stored.'
       },
       {
-        element: "#data-step-1",
+        element: '#data-step-1',
         intro: `"View Training Topics" organizes your training materials by the Training Series that they are a part of.`,
-        position: "left"
+        position: 'left'
       },
       {
-        element: "#data-step-2",
+        element: '#data-step-2',
         intro:
           "Clicking a Training Topic will pull up a modal with a list of the trainings you've received for that specific series."
       },
       {
-        element: "#data-step-3",
+        element: '#data-step-3',
         intro: `"View Training Messages" lists ALL training messages you've received ordered chronologically.   
         Try Clicking It Now`,
-        position: "right"
+        position: 'right'
       },
       {
-        element: "#data-step-4",
+        element: '#data-step-4',
         intro:
           "Clicking a Training Message will show the replies you have sent to the messages you've received, as well as any responses your Team Leader has given.",
-        tooltipPosition: "bottom-middle-aligned,"
+        tooltipPosition: 'bottom-middle-aligned,'
       },
       {
         intro:
           "We're thrilled to have you as a part of Training Bot. Take a poke around, and please don't hesitate to contact us if you have any questions or concerns!"
       }
     ]
-  });
-  intro.start();
+  })
+  intro.start()
 }
 
-export default withStyles(styles)(TeamMemberAppBar);
+export default withStyles(styles)(TeamMemberAppBar)

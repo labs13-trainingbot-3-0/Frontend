@@ -8,7 +8,13 @@ const HelpModal = props => {
       style={{ cursor: "pointer" }}
       onClick={e => {
         e.preventDefault();
-        props.history.push("/home");
+        if (
+          window.location.pathname === "/team-member/help"
+        ) {
+          props.history.push("/team-member");
+        } else {
+          props.history.push("/home");
+        }
       }}
     >
       <HelpModalPaper

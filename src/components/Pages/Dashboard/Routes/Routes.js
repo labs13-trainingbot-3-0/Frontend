@@ -37,6 +37,7 @@ function Routes(props) {
           />
         )}
       />
+
       <Route
         exact
         path="/home/contact"

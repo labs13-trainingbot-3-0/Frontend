@@ -1,85 +1,85 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import moment from 'moment'
+import React from "react";
+import { connect } from "react-redux";
+import moment from "moment";
 
-import { getNotificationResponses } from '../../../store/actions'
+import { getNotificationResponses } from "../../../store/actions";
 
 // MUI
-import { withStyles } from '@material-ui/styles'
-import Paper from '@material-ui/core/Paper'
-import List from '@material-ui/core/List'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
-import ListItemAvatar from '@material-ui/core/ListItemAvatar'
-import ListItemText from '@material-ui/core/ListItemText'
-import Avatar from '@material-ui/core/Avatar'
-import Collapse from '@material-ui/core/Collapse'
-import Divider from '@material-ui/core/Divider'
-import TablePagination from '@material-ui/core/TablePagination'
-import Typography from '@material-ui/core/Typography'
-import Tooltip from '@material-ui/core/Tooltip'
+import { withStyles } from "@material-ui/styles";
+import Paper from "@material-ui/core/Paper";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import ListItemText from "@material-ui/core/ListItemText";
+import Avatar from "@material-ui/core/Avatar";
+import Collapse from "@material-ui/core/Collapse";
+import Divider from "@material-ui/core/Divider";
+import TablePagination from "@material-ui/core/TablePagination";
+import Typography from "@material-ui/core/Typography";
+import Tooltip from "@material-ui/core/Tooltip";
 
 // Icons
-import ExpandLess from '@material-ui/icons/ExpandLess'
-import ExpandMore from '@material-ui/icons/ExpandMore'
-import TextsmsOutlined from '@material-ui/icons/TextsmsOutlined'
-import EmailOutlined from '@material-ui/icons/EmailOutlined'
-import slack_black_logo from 'img/slack_black_logo.png'
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
+import TextsmsOutlined from "@material-ui/icons/TextsmsOutlined";
+import EmailOutlined from "@material-ui/icons/EmailOutlined";
+import slack_black_logo from "img/slack_black_logo.png";
 
 const styles = {
   paper: {
-    margin: '5px auto',
-    padding: '16px',
-    height: '100%',
-    width: '95%'
+    margin: "5px auto",
+    padding: "16px",
+    height: "100%",
+    width: "95%"
   },
   resp: {
-    paddingLeft: '64px'
+    paddingLeft: "64px"
   },
   respWithoutIcon: {
-    paddingLeft: '60px'
+    paddingLeft: "60px"
   },
   slack: {
-    height: '100%',
-    width: '50px',
-    margin: '0px - 13px'
+    height: "100%",
+    width: "50px",
+    margin: "0px - 13px"
   }
-}
+};
 
 class TrainingMessages extends React.Component {
   state = {
     page: 0,
     rowsPerPage: 5,
-    showNotifId: ''
-  }
+    showNotifId: ""
+  };
 
-  handleChangePage = (event, newPage) => this.setState({ page: newPage })
+  handleChangePage = (event, newPage) => this.setState({ page: newPage });
 
   handleChangeRowsPerPage = event =>
-    this.setState({ rowsPerPage: +event.target.value })
+    this.setState({ rowsPerPage: +event.target.value });
 
   handleClickListItem = id => {
-    this.props.getNotificationResponses(id)
+    this.props.getNotificationResponses(id);
     if (this.state.showNotifId === id) {
-      this.setState({ showNotifId: '' })
-      return
+      this.setState({ showNotifId: "" });
+      return;
     }
-    this.setState({ showNotifId: id })
-  }
+    this.setState({ showNotifId: id });
+  };
 
   render() {
-    const profile = JSON.parse(localStorage.getItem('Profile'))
+    const profile = JSON.parse(localStorage.getItem("Profile"));
 
     // show notifications if their send date is in the past
     const sentNotif = this.props.notifFromAdmin.filter(
       notif => moment(notif.send_date) < moment()
-    )
+    );
 
     // for pagination
     const notifByPage = sentNotif.slice(
       this.state.page * this.state.rowsPerPage,
       this.state.page * this.state.rowsPerPage + this.state.rowsPerPage
-    )
+    );
 
     return !sentNotif.length ? (
       <Paper elevation={2} className={this.props.classes.paper}>
@@ -90,13 +90,13 @@ class TrainingMessages extends React.Component {
     ) : (
       <Paper elevation={2} className={this.props.classes.paper}>
         {notifByPage.map(notif => (
-          <div key={notif.id}>
+          <div id="data-step-4" key={notif.id}>
             <List>
               <ListItem
                 button
                 onClick={() => this.handleClickListItem(notif.id)}
               >
-                {notif.name === 'twilio' && (
+                {notif.name === "twilio" && (
                   <Tooltip title="via SMS" placement="top-start">
                     <ListItemIcon>
                       <TextsmsOutlined />
@@ -104,7 +104,7 @@ class TrainingMessages extends React.Component {
                   </Tooltip>
                 )}
 
-                {notif.name === 'sendgrid' && (
+                {notif.name === "sendgrid" && (
                   <Tooltip title="via Email" placement="top-start">
                     <ListItemIcon>
                       <EmailOutlined />
@@ -112,7 +112,7 @@ class TrainingMessages extends React.Component {
                   </Tooltip>
                 )}
 
-                {notif.name === 'slack' && (
+                {notif.name === "slack" && (
                   <Tooltip title="via Slack" placement="top-start">
                     <ListItemIcon>
                       <img
@@ -130,7 +130,7 @@ class TrainingMessages extends React.Component {
                 />
 
                 <Typography color="textSecondary">
-                  {moment(notif.send_date).format('MMMM Do, YYYY')}
+                  {moment(notif.send_date).format("MMMM Do, YYYY")}
                 </Typography>
 
                 {this.state.showNotifId === notif.id ? (
@@ -173,7 +173,7 @@ class TrainingMessages extends React.Component {
                         <ListItemText
                           primary={resp.body}
                           secondary={moment(resp.created_at).format(
-                            'MMMM Do, YYYY'
+                            "MMMM Do, YYYY"
                           )}
                         />
                       </ListItem>
@@ -197,7 +197,7 @@ class TrainingMessages extends React.Component {
           component="div"
         />
       </Paper>
-    )
+    );
   }
 }
 
@@ -206,13 +206,13 @@ const mapStateToProps = state => ({
   resp: state.responsesReducer.responses,
   user: state.userReducer.userProfile.user,
   admin: state.userReducer.userProfile.admin
-})
+});
 
 const mapDispatchToProps = dispatch => ({
   getNotificationResponses: id => dispatch(getNotificationResponses(id))
-})
+});
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(withStyles(styles)(TrainingMessages))
+)(withStyles(styles)(TrainingMessages));

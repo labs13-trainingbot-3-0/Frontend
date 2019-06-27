@@ -39,7 +39,7 @@ class AppBar extends Component {
             </>
           ) : (
             <>
-              <Link onClick="window.location.reload();">
+              <Link to="/home">
                 <div style={{ display: "flex", alignItems: "center" }}>
                   <NavigationLogo alt="A cute, personable robot" src={Logo} />
                   <HelpOutline

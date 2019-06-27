@@ -70,7 +70,7 @@ class TeamMemberAppBar extends React.Component {
                 </Tooltip>
               </Grid>
 
-              <Grid item xs='auto' sm='auto' md='auto' lg='auto'>
+              <Grid item xs="auto" sm="auto" md="auto" lg="auto">
                 <Button
                   variant="contained"
                   onClick={e => {

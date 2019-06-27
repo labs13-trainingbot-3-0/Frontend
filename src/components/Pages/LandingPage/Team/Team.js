@@ -14,10 +14,10 @@ import Logo from "img/training-bot.png";
 // import Nick from "img/Nick.png";
 // import Adam from "img/Adam.png";
 // import Tom from "img/Tom.png";
-import ben from "img/ben.png";
-import divya from "img/divya.jpeg";
-import joe from "img/joe.jpeg";
-import tom from "img/tom.jpeg";
+// import ben from "img/ben.png";
+// import divya from "img/divya.jpeg";
+// import joe from "img/joe.jpeg";
+// import tom from "img/tom.jpeg";
 
 import { animateScroll as scroll } from "react-scroll";
 
@@ -65,7 +65,36 @@ class Team extends React.Component {
             <Typography variant="h3">The Team</Typography>
             <TeamInfoContainer>
               <TeamMember>
-                <img src={ben} alt="Ben Chandler" />
+                <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1561564425/Gannon_yb4tqv.jpg'} alt="Gannon Darcy" />
+                <Typography variant="title">Gannon Darcy</Typography>
+                <p>Project Manager</p>
+                <PortfolioLink
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="http://gannon.dev"
+                >
+                  Portfolio Site
+                </PortfolioLink>
+
+                <TeamMemberLinks>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://github.com/GannonDetroit"
+                  >
+                    <FontAwesomeIcon className="fa-2x" icon={faGithubSquare} />
+                  </a>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href="https://www.linkedin.com/in/gannon-darcy-b8345073/"
+                  >
+                    <FontAwesomeIcon className="fa-2x" icon={faLinkedin} />
+                  </a>
+                </TeamMemberLinks>
+              </TeamMember>
+              <TeamMember>
+                <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1561565300/Capture_dnqkic.png'} alt="Ben Chandler" />
                 <Typography variant="title">Ben Chandler</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
@@ -94,7 +123,7 @@ class Team extends React.Component {
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={divya} alt="Divya Nair" />
+                <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/divya_wb4iz7.jpg'} alt="Divya Nair" />
                 <Typography variant="title">Divya Nair</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
@@ -123,7 +152,7 @@ class Team extends React.Component {
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={joe} alt="Joe Bugajski" />
+                <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/joe_tno9yw.jpg'} alt="Joe Bugajski" />
                 <Typography variant="title">Joe Bugajski</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink
@@ -152,7 +181,7 @@ class Team extends React.Component {
                 </TeamMemberLinks>
               </TeamMember>
               <TeamMember>
-                <img src={tom} alt="Thomas Folbrecht" />
+                <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/tom_tdwkn4.jpg'} alt="Thomas Folbrecht" />
                 <Typography variant="title">Thomas Folbrecht</Typography>
                 <p>Full-Stack Developer</p>
                 <PortfolioLink

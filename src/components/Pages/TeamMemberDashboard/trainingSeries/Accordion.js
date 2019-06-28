@@ -7,18 +7,24 @@ import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ProgressCircle from "components/UI/Progress/ProgressCircle";
 import Microlink from "@microlink/react";
+import Container from '@material-ui/core/Container';
 import styled from "styled-components";
 import "./accordion.css";
 
  const CustomMicrolink = styled(Microlink)`
+  display: flex;
+  flex-direction: column;
   font-family: 'Nitti, "Microsoft YaHei", 微软雅黑, monospace';
   max-width: 100%;
   border-radius: 0.42857em;
+  -webkit-box-shadow: 5px 5px 15px 5px rgba(69, 20, 118, 0.6); 
+  box-shadow: 5px 5px 15px 5px rgba(69, 20, 118, 0.6);
 `;
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%"
+    width: "80%",
+    height: "80%"
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),
@@ -30,7 +36,7 @@ export default function Accordion(props) {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
+    <Container className={classes.root}>
       {props.messages ? (
         props.messages
           .filter(message => {
@@ -49,17 +55,17 @@ export default function Accordion(props) {
                   </Typography>
                 </ExpansionPanelSummary>
                 <ExpansionPanelDetails>
-                  <div className="container">
+                  <Container className="container">
                     <Typography>{message.body}</Typography>
                     {message.link ? (
                       <CustomMicrolink url={message.link} size="medium" />
                     ) : (
                         <CustomMicrolink
                           url={`https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/training-bot_pl6bji.svg`}
-                          size="small"
+                          size="medium"
                         />
                       )}
-                  </div>
+                  </Container>
                 </ExpansionPanelDetails>
               </ExpansionPanel>
             );
@@ -67,48 +73,6 @@ export default function Accordion(props) {
       ) : (
         <ProgressCircle />
       )}
-
-      {/* <ExpansionPanel >
-        <ExpansionPanelSummary 
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel1a-content"
-          id ="panel1a-header">
-          <Typography className={classes.heading}>      Expansion Panel 1 
-          </Typography> 
-        </ExpansionPanelSummary> 
-        <ExpansionPanelDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur         adipiscing elit.Suspendisse malesuada lacus         ex,
-            sit amet blandit leo lobortis eget.
-          </Typography> 
-       </ExpansionPanelDetails> 
-      </ExpansionPanel>
-      <ExpansionPanel>
-        <ExpansionPanelSummary 
-          expandIcon={<ExpandMoreIcon/>}
-          aria-controls="panel2a-content"
-          id="panel2a-header" >
-          <Typography className={classes.heading}> 
-            Expansion Panel 2 
-          </Typography>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
-          <Typography >
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.Suspendisse malesuada lacus ex,
-            sit amet blandit leo lobortis eget.
-          </Typography>
-        </ExpansionPanelDetails> 
-      </ExpansionPanel> 
-      <ExpansionPanel disabled >
-        <ExpansionPanelSummary 
-          expandIcon={<ExpandMoreIcon/>}
-          aria-controls="panel3a-content"
-          id="panel3a-header">
-          <Typography className={classes.heading}> 
-            Disabled Expansion Panel 
-          </Typography> 
-        </ExpansionPanelSummary> 
-      </ExpansionPanel>  */}
-    </div>
+    </Container>
   );
 }

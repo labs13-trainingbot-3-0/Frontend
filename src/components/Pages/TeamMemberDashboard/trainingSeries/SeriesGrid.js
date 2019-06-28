@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import GridList from "@material-ui/core/GridList";
 import GridListTile from "@material-ui/core/GridListTile";
 import GridListTileBar from "@material-ui/core/GridListTileBar";
-import IconButton from "@material-ui/core/IconButton";
-import InfoIcon from "@material-ui/icons/Info";
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,11 +12,18 @@ const useStyles = makeStyles(theme => ({
     flexWrap: "wrap",
     flexDirection: 'row',
     justifyContent: "space-around",
-    overflow: "hidden"
+    overflow: "hidden",
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
   },
   gridList: {
     width: 800,
     height: 450
+
   },
   icon: {
     color: "rgba(69, 20, 118, 0.74)"
@@ -26,39 +33,32 @@ const useStyles = makeStyles(theme => ({
 export default function TitlebarGridList(props) {
   const classes = useStyles();
 
-  // const clickHandler = (id) => {
-  //   props.openSeries(id)
-  // }
+  
 
   return (
-    <div className={classes.root}>
-      <h3>Click on a training series to reveal messages</h3>
-      <GridList 
-        cellHeight={180} 
-        className={classes.gridList}
-        spacing={26}>
-        <GridListTile key="Subheader" cols={2} style={{ height: "auto" }} />
-        {props.seriesData.map((tile, i) => (
-          <GridListTile
-            id="data-step-2"
-            onClick={() => props.openSeries(tile.id)}
-            key={tile.id}
-          >
-            <img src={tile.image} alt="series cover" />
-            <GridListTileBar
-              title={tile.title}
-              actionIcon={
-                <IconButton
-                  aria-label={`info about ${tile.title}`}
-                  className={classes.icon}
+    <Grid container spacing={3} className={classes.root}>
+      <Grid item xs={12}>
+          <Paper className={classes.paper}>Click on a training topic to reveal messages</Paper>
+      </Grid>
+        <GridList 
+          cellHeight={180} 
+          className={classes.gridList}
+          spacing={5}>
+          
+            <GridListTile key="Subheader" cols={2} style={{ height: "auto" }}/>
+            {props.seriesData.map((tile, i) => (
+             
+                <GridListTile
+                  id="data-step-2"
+                  onClick={() => props.openSeries(tile.id)}
+                  key={tile.id}
                 >
-                  <InfoIcon />
-                </IconButton>
-              }
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
+                  <img src={tile.image} alt="series cover" />
+                  <GridListTileBar title={tile.title}/>
+                </GridListTile>
+            
+          ))}
+        </GridList>
+    </Grid>
   )
 }

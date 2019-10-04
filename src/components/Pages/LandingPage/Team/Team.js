@@ -97,6 +97,7 @@ class Team extends React.Component {
                 <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1561565300/Capture_dnqkic.png'} alt="Ben Chandler" />
                 <Typography variant="title">Ben Chandler</Typography>
                 <p>Full-Stack Developer</p>
+                <p>Frontend, Backend</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
@@ -126,6 +127,7 @@ class Team extends React.Component {
                 <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/divya_wb4iz7.jpg'} alt="Divya Nair" />
                 <Typography variant="title">Divya Nair</Typography>
                 <p>Full-Stack Developer</p>
+                <p>Backend</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
@@ -155,6 +157,7 @@ class Team extends React.Component {
                 <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/joe_tno9yw.jpg'} alt="Joe Bugajski" />
                 <Typography variant="title">Joe Bugajski</Typography>
                 <p>Full-Stack Developer</p>
+                <p>Frontend</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"
@@ -184,6 +187,7 @@ class Team extends React.Component {
                 <img src={'https://res.cloudinary.com/trainingbot3/image/upload/v1560961513/tom_tdwkn4.jpg'} alt="Thomas Folbrecht" />
                 <Typography variant="title">Thomas Folbrecht</Typography>
                 <p>Full-Stack Developer</p>
+                <p>Frontend</p>
                 <PortfolioLink
                   target="_blank"
                   rel="noopener noreferrer"

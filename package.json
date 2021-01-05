@@ -11,7 +11,7 @@
     "@microlink/react": "^4.0.1",
     "auth0-js": "^9.10.2",
     "auth0-lock": "^11.16.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "dotenv": "^7.0.0",
     "intro.js": "^2.9.3",
     "jwt-decode": "^2.2.0",
